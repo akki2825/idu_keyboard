@@ -45,11 +45,6 @@ The icon is licensed under [Creative Commons BY-SA 4.0](https://creativecommons.
 
 # Credits
 
-## Idu Mishmi Language Keyboard Development
-- Idu Mishmi language implementation and keyboard customization
-- Our [contributors](https://github.com/akki2825/idu_keyboard/graphs/contributors)
-
-## Based on HeliBoard and Open Source Projects
 - [HeliBoard](https://github.com/Helium314/HeliBoard) - The excellent keyboard base this fork is built upon
 - Icon by [Fabian OvrWrt](https://github.com/FabianOvrWrt) with contributions from [The Eclectic Dyslexic](https://github.com/the-eclectic-dyslexic)
 - [OpenBoard](https://github.com/openboard-team/openboard)
