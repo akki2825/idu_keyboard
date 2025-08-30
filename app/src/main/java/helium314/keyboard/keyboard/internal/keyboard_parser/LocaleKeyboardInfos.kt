@@ -11,9 +11,9 @@ import helium314.keyboard.latin.R
 import helium314.keyboard.latin.common.splitOnFirstSpacesOnly
 import helium314.keyboard.latin.common.splitOnWhitespace
 import helium314.keyboard.latin.settings.Settings
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils
 import java.io.InputStream
 import java.util.Locale
+import android.util.Log
 
 class LocaleKeyboardInfos(dataStream: InputStream?, locale: Locale) {
     private val popupKeys = hashMapOf<String, MutableCollection<String>>()
@@ -64,6 +64,7 @@ class LocaleKeyboardInfos(dataStream: InputStream?, locale: Locale) {
     }
 
     private fun readStream(stream: InputStream?, onlyPopupKeys: Boolean, priority: Boolean) {
+        Log.d("LocaleKeyboardInfos", "readStream called with stream: ${stream != null}")
         if (stream == null) return
         stream.reader().use { reader ->
             var mode = READER_MODE_NONE
@@ -209,12 +210,17 @@ private fun createLocaleKeyTexts(context: Context, params: KeyboardParams, popup
 
 private fun getStreamForLocale(locale: Locale, context: Context) =
     try {
-        if (locale.toLanguageTag() == SubtypeLocaleUtils.NO_LANGUAGE) context.assets.open("$LOCALE_TEXTS_FOLDER/more_popup_keys.txt")
-        else context.assets.open("$LOCALE_TEXTS_FOLDER/${locale.toLanguageTag()}.txt")
-    } catch (_: Exception) {
+        val pathTag = "$LOCALE_TEXTS_FOLDER/${locale.toLanguageTag()}.txt"
+        Log.d("LocaleKeyboardInfos", "Attempting to open: $pathTag")
+        context.assets.open(pathTag)
+    } catch (e: Exception) {
+        Log.e("LocaleKeyboardInfos", "Error opening ${locale.toLanguageTag()}.txt: ${e.message}")
         try {
-            context.assets.open("$LOCALE_TEXTS_FOLDER/${locale.language}.txt")
-        } catch (_: Exception) {
+            val pathLang = "$LOCALE_TEXTS_FOLDER/${locale.language}.txt"
+            Log.d("LocaleKeyboardInfos", "Attempting to open: $pathLang")
+            context.assets.open(pathLang)
+        } catch (e: Exception) {
+            Log.e("LocaleKeyboardInfos", "Error opening ${locale.language}.txt: ${e.message}")
             null
         }
     }
@@ -222,7 +228,7 @@ private fun getStreamForLocale(locale: Locale, context: Context) =
 private fun getLocaleTlds(locale: Locale): LinkedHashSet<String> {
     val tlds = getDefaultTlds(locale)
     val ccLower = locale.country.lowercase()
-    if (ccLower.isEmpty() || locale.language == SubtypeLocaleUtils.NO_LANGUAGE)
+    if (ccLower.isEmpty())
         return tlds
     specialCountryTlds.forEach {
         if (ccLower != it.first) return@forEach

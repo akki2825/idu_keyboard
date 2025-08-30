@@ -85,7 +85,6 @@ import helium314.keyboard.latin.utils.LeakGuardHandlerWrapper;
 import helium314.keyboard.latin.utils.Log;
 import helium314.keyboard.latin.utils.StatsUtils;
 import helium314.keyboard.latin.utils.StatsUtilsManager;
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils;
 import helium314.keyboard.latin.utils.SubtypeSettings;
 import helium314.keyboard.latin.utils.ViewLayoutUtils;
 import helium314.keyboard.settings.SettingsActivity;
@@ -102,6 +101,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+
+import helium314.keyboard.latin.utils.LanguageOnSpacebarUtils;
 
 /**
  * Input method implementation for Qwerty'ish keyboard.
@@ -589,14 +590,11 @@ public class LatinIME extends InputMethodService implements
             return null;
         }
 
-        public void onSubtypeChanged(final InputMethodSubtype oldSubtype,
-                                     final InputMethodSubtype newSubtype) {
-            if (oldSubtype != mOverriddenByLocale) {
-                // Whenever the subtype is changed, clear tracking
-                // the subtype that is overridden by a HintLocale as
-                // we no longer have a subtype to automatically switch back to.
-                mOverriddenByLocale = null;
-            }
+        public void onSubtypeChanged(final InputMethodSubtype subtype) {
+            mRichImm.onSubtypeChanged(subtype);
+            mInputLogic.onSubtypeChanged(mRichImm.getCombiningRulesExtraValueOfCurrentSubtype(),
+                    mSettings.getCurrent()); // Changed to mSettings.getCurrent()
+            // mInputView.onSubtypeChanged(); // Removed as mInputView is a View
         }
 
         public void switchSubtype(final RichInputMethodManager richImm) {
@@ -926,13 +924,12 @@ public class LatinIME extends InputMethodService implements
             // Now that the dummy subtype has a fixed id, we can easily avoid enabling it.
             return;
         }
-        InputMethodSubtype oldSubtype = mRichImm.getCurrentSubtype().getRawSubtype();
 
-        mSubtypeState.onSubtypeChanged(oldSubtype, subtype);
-        StatsUtils.onSubtypeChanged(oldSubtype, subtype);
+        mSubtypeState.onSubtypeChanged(subtype);
+        StatsUtils.onSubtypeChanged(mRichImm.getCurrentSubtype().getRawSubtype(), subtype);
         mRichImm.onSubtypeChanged(subtype);
-        mInputLogic.onSubtypeChanged(SubtypeLocaleUtils.getCombiningRulesExtraValue(subtype),
-                mSettings.getCurrent());
+        mInputLogic.onSubtypeChanged(mRichImm.getCombiningRulesExtraValueOfCurrentSubtype(),
+                mSettings.getCurrent()); // Changed to mSettings.getCurrent()
         loadKeyboard();
         if (mSuggestionStripView != null)
             mSuggestionStripView.setRtl(mRichImm.getCurrentSubtype().isRtlSubtype());
@@ -1853,15 +1850,7 @@ public class LatinIME extends InputMethodService implements
             return super.onKeyDown(keyCode, keyEvent);
         }
         final Event event;
-        if (mRichImm.getCurrentSubtypeLocale().getLanguage().equals("ko")) {
-            final RichInputMethodSubtype subtype = mKeyboardSwitcher.getKeyboard() == null
-                    ? mRichImm.getCurrentSubtype()
-                    : mKeyboardSwitcher.getKeyboard().mId.mSubtype;
-            event = HangulEventDecoder.decodeHardwareKeyEvent(subtype, keyEvent,
-                        () -> getHardwareKeyEventDecoder(keyEvent.getDeviceId()).decodeHardwareKey(keyEvent));
-        } else {
-            event = getHardwareKeyEventDecoder(keyEvent.getDeviceId()).decodeHardwareKey(keyEvent);
-        }
+        event = getHardwareKeyEventDecoder(keyEvent.getDeviceId()).decodeHardwareKey(keyEvent);
         // If the event is not handled by LatinIME, we just pass it to the parent implementation.
         // If it's handled, we return true because we did handle it.
         if (event.isHandled()) {

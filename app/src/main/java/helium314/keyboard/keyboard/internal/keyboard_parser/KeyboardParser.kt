@@ -265,7 +265,7 @@ class KeyboardParser(private val params: KeyboardParams, private val context: Co
         if (!params.mId.mNumberRowEnabled && params.mId.mElementId == KeyboardId.ELEMENT_SYMBOLS) {
             // replace first symbols row with number row, but use the labels as popupKeys
             val numberRowCopy = numberRow.toMutableList()
-            numberRowCopy.forEachIndexed { index, keyData -> keyData.popup.symbol = baseKeys[0].getOrNull(index)?.label }
+            numberRowCopy.forEachIndexed { index, keyData -> keyData.popup.symbol = baseKeys[0].getOrNull(index)?.label?.let { listOf(it) } }
             baseKeys[0] = numberRowCopy
         } else if (!params.mId.mNumberRowEnabled && params.mId.isAlphabetKeyboard && !hasBuiltInNumbers()) {
             if (baseKeys[0].any { it.popup.main != null || !it.popup.relevant.isNullOrEmpty() } // first row of baseKeys has any layout popup key
@@ -288,7 +288,12 @@ class KeyboardParser(private val params: KeyboardParams, private val context: Co
         layout.forEachIndexed { i, row ->
             val baseRow = baseKeys.getOrNull(i) ?: return@forEachIndexed
             row.forEachIndexed { j, key ->
-                baseRow.getOrNull(j)?.popup?.symbol = key.label
+                val popupKeysForLabel = params.mLocaleKeyboardInfos.getPopupKeys(key.label)
+                if (popupKeysForLabel != null) {
+                    baseRow.getOrNull(j)?.popup?.symbol = popupKeysForLabel.toList()
+                } else {
+                    baseRow.getOrNull(j)?.popup?.symbol = listOf(key.label ?: "")
+                }
             }
         }
     }

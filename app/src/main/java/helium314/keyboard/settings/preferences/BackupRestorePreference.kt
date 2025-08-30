@@ -192,7 +192,7 @@ fun BackupRestorePreference(setting: Setting) {
                     .addCategory(Intent.CATEGORY_OPENABLE)
                     .putExtra(
                         Intent.EXTRA_TITLE,
-                        ctx.getString(R.string.english_ime_name)
+                        ctx.getString(R.string.idu_mishmi_ime_name)
                             .replace(" ", "_") + "_backup_$currentDate.zip"
                     )
                     .setType("application/zip")
@@ -258,29 +258,24 @@ private fun upgradeFileNames(originalName: String): String {
     return when {
         originalName.endsWith(DictionaryInfoUtils.USER_DICTIONARY_SUFFIX) -> {
             // replace directory after switch to language tag
-            val dirName = originalName.substringAfter(File.separator).substringBefore(File.separator)
-            originalName.replace(dirName, dirName.constructLocale().toLanguageTag())
+            val iduMishmi = "idu-mishmi"
+            originalName.replace(originalName.substringAfter(File.separator).substringBefore(File.separator), iduMishmi)
         }
         originalName.startsWith("blacklists") -> {
             // replace file name after switch to language tag
-            val fileName = originalName.substringAfter("blacklists${File.separator}").substringBefore(".txt")
-            originalName.replace(fileName, fileName.constructLocale().toLanguageTag())
+            val iduMishmi = "idu-mishmi"
+            originalName.replace(originalName.substringAfter("blacklists${File.separator}").substringBefore(".txt"), iduMishmi)
         }
         originalName.startsWith("layouts") -> {
-            // replace file name after switch to language tag, but only if it's not a layout
-            val localeString = originalName.substringAfter(".").substringBefore(".")
-            if (localeString in listOf("symbols", "symbols_shifted", "symbols_arabic", "number", "numpad", "numpad_landscape", "phone", "phone_symbols"))
-                return originalName // it's a layout!
-            val locale = localeString.constructLocale()
-            if (locale.toLanguageTag() != "und")
-                originalName.replace(localeString, locale.toLanguageTag())
+            // only allow idu mishmi layout
+            if (originalName == "layouts/idu-mishmi.xml")
+                originalName
             else
-                originalName // no valid locale -> must be symbols layout, don't change
+                throw IllegalArgumentException("only idu-mishmi layout is allowed")
         }
         originalName.startsWith("UserHistoryDictionary") -> {
-            val localeString = originalName.substringAfter(".").substringBefore(".")
-            val locale = localeString.constructLocale()
-            originalName.replace(localeString, locale.toLanguageTag())
+            val iduMishmi = "idu-mishmi"
+            originalName.replace(originalName.substringAfter(".").substringBefore("."), iduMishmi)
         }
         else -> originalName
     }

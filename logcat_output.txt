@@ -1,0 +1,130 @@
+--------- beginning of main
+08-29 23:42:30.932  8849  8849 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:42:30.932  8849  8849 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:42:30.932  8849  8849 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:42:30.932  8849  8849 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:42:30.934  8849  8849 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:42:31.019  8849  8849 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:42:31.019  8849  8849 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:42:31.019  8849  8849 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:42:31.019  8849  8849 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:42:31.019  8849  8849 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:42:31.020  8849  8849 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:42:31.021  8849  8849 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:42:31.021  8849  8849 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:42:31.021  8849  8849 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:42:31.021  8849  8849 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:47:05.335 10263 10263 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:47:05.335 10263 10263 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:47:05.335 10263 10263 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:47:05.335 10263 10263 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:47:05.337 10263 10263 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:47:05.396 10263 10263 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:47:05.396 10263 10263 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:47:05.396 10263 10263 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:47:05.396 10263 10263 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:47:05.397 10263 10263 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:47:05.398 10263 10263 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:47:05.398 10263 10263 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:47:05.398 10263 10263 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:47:05.398 10263 10263 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:47:05.398 10263 10263 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:48:57.815 11510 11510 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:48:57.816 11510 11510 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:48:57.816 11510 11510 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:48:57.816 11510 11510 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:48:57.818 11510 11510 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:48:57.873 11510 11510 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:48:57.873 11510 11510 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:48:57.873 11510 11510 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:48:57.873 11510 11510 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:48:57.873 11510 11510 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:48:57.874 11510 11510 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:48:57.875 11510 11510 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:48:57.875 11510 11510 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:48:57.875 11510 11510 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:48:57.875 11510 11510 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:50:42.241 12076 12076 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:50:42.241 12076 12076 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:50:42.241 12076 12076 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:50:42.241 12076 12076 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:50:42.243 12076 12076 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:50:42.309 12076 12076 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:50:42.309 12076 12076 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:50:42.309 12076 12076 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:50:42.309 12076 12076 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:50:42.309 12076 12076 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:50:42.310 12076 12076 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:50:42.310 12076 12076 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:50:42.311 12076 12076 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:50:42.311 12076 12076 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:50:42.311 12076 12076 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:56:29.534 13863 13863 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:56:29.535 13863 13863 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:56:29.535 13863 13863 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:56:29.535 13863 13863 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:56:29.537 13863 13863 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:56:29.537 13863 13863 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-29 23:56:29.591 13863 13863 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:56:29.592 13863 13863 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:56:29.592 13863 13863 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:56:29.592 13863 13863 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:56:29.592 13863 13863 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:56:29.592 13863 13863 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-29 23:56:29.593 13863 13863 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:56:29.593 13863 13863 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:56:29.593 13863 13863 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:56:29.593 13863 13863 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:56:29.594 13863 13863 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:56:29.594 13863 13863 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-29 23:59:12.505 15206 15206 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:59:12.506 15206 15206 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:59:12.506 15206 15206 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:59:12.506 15206 15206 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:59:12.507 15206 15206 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:59:12.507 15206 15206 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-29 23:59:13.027 15206 15206 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:59:13.028 15206 15206 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:59:13.028 15206 15206 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:59:13.028 15206 15206 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:59:13.028 15206 15206 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:59:13.028 15206 15206 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-29 23:59:13.029 15206 15206 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-29 23:59:13.029 15206 15206 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-29 23:59:13.029 15206 15206 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-29 23:59:13.029 15206 15206 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-29 23:59:13.030 15206 15206 D LocaleKeyboardInfos: readStream called with stream: false
+08-29 23:59:13.030 15206 15206 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-30 00:01:34.529 16808 16808 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-30 00:01:34.529 16808 16808 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-30 00:01:34.529 16808 16808 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-30 00:01:34.529 16808 16808 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-30 00:01:34.531 16808 16808 D LocaleKeyboardInfos: readStream called with stream: false
+08-30 00:01:34.531 16808 16808 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-30 00:01:34.594 16808 16808 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-30 00:01:34.595 16808 16808 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-30 00:01:34.595 16808 16808 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-30 00:01:34.595 16808 16808 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-30 00:01:34.595 16808 16808 D LocaleKeyboardInfos: readStream called with stream: false
+08-30 00:01:34.595 16808 16808 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-30 00:01:34.596 16808 16808 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-30 00:01:34.596 16808 16808 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-30 00:01:34.596 16808 16808 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-30 00:01:34.596 16808 16808 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-30 00:01:34.597 16808 16808 D LocaleKeyboardInfos: readStream called with stream: false
+08-30 00:01:34.597 16808 16808 D LocaleKeyboardInfos: Final popupKeys map: {}
+08-30 00:03:43.774 17650 17650 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-30 00:03:43.774 17650 17650 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-30 00:03:43.774 17650 17650 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-30 00:03:43.774 17650 17650 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-30 00:03:43.776 17650 17650 D LocaleKeyboardInfos: readStream called with stream: false
+08-30 00:03:43.836 17650 17650 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-30 00:03:43.836 17650 17650 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-30 00:03:43.836 17650 17650 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-30 00:03:43.836 17650 17650 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-30 00:03:43.837 17650 17650 D LocaleKeyboardInfos: readStream called with stream: false
+08-30 00:03:43.838 17650 17650 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm-IN.txt
+08-30 00:03:43.838 17650 17650 E LocaleKeyboardInfos: Error opening idm-IN.txt: locale_key_texts/idm-IN.txt
+08-30 00:03:43.838 17650 17650 D LocaleKeyboardInfos: Attempting to open: locale_key_texts/idm.txt
+08-30 00:03:43.838 17650 17650 E LocaleKeyboardInfos: Error opening idm.txt: locale_key_texts/idm.txt
+08-30 00:03:43.838 17650 17650 D LocaleKeyboardInfos: readStream called with stream: false

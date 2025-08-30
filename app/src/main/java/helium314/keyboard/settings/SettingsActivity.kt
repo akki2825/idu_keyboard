@@ -43,6 +43,7 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
+import java.util.Locale
 
 // todo: with compose, app startup is slower and UI needs some "warmup" time to be snappy
 //  maybe baseline profiles help?
@@ -63,7 +64,7 @@ class SettingsActivity : ComponentActivity(), SharedPreferences.OnSharedPreferen
         super.onCreate(savedInstanceState)
         if (Settings.getValues() == null) {
             val inputAttributes = InputAttributes(EditorInfo(), false, packageName)
-            Settings.getInstance().loadSettings(this, resources.configuration.locale(), inputAttributes)
+            Settings.getInstance().loadSettings(this, Locale.forLanguageTag("idm-IN"), inputAttributes)
         }
         ExecutorUtils.getBackgroundExecutor(ExecutorUtils.KEYBOARD).execute { cleanUnusedMainDicts(this) }
         if (BuildConfig.DEBUG || DebugFlags.DEBUG_ENABLED)

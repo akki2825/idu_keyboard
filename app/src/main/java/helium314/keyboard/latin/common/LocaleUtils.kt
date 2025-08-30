@@ -11,7 +11,6 @@ import helium314.keyboard.compat.locale
 import helium314.keyboard.latin.BuildConfig
 import helium314.keyboard.latin.R
 import helium314.keyboard.latin.utils.ScriptUtils.script
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils
 import java.util.Locale
 
 /**
@@ -158,8 +157,6 @@ object LocaleUtils {
             } else if (elements.size == 2) {
                 if (region == "ZZ") Locale.forLanguageTag(elements[0] + "-Latn")
                 else Locale(language, region!!)
-            } else if (language == SubtypeLocaleUtils.NO_LANGUAGE) { // localeParams.length == 3
-                Locale.Builder().setLanguage(language).setVariant(elements[2]).setScript("Latn").build()
             } else if (elements[2].startsWith("#")) {
                 // best guess: elements[2] is a script, e.g. sr-Latn locale to string is sr__#Latn
                 Locale.Builder().setLanguage(language).setRegion(region).setScript(elements[2].substringAfter("#")).build()
@@ -173,12 +170,8 @@ object LocaleUtils {
 
     @JvmStatic
     fun isRtlLanguage(locale: Locale): Boolean {
-        val displayName = locale.getDisplayName(locale)
-        if (displayName.isEmpty()) return false
-        return when (Character.getDirectionality(displayName.codePointAt(0))) {
-            Character.DIRECTIONALITY_RIGHT_TO_LEFT, Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC -> true
-            else -> false
-        }
+        // Idu Mishmi is not an RTL language.
+        return false
     }
 
     fun Locale.localizedDisplayName(context: Context) =
@@ -186,27 +179,11 @@ object LocaleUtils {
 
     @JvmStatic
     fun getLocaleDisplayNameInLocale(locale: Locale, resources: Resources, displayLocale: Locale): String {
-        val languageTag = locale.toLanguageTag()
-        if (languageTag == SubtypeLocaleUtils.NO_LANGUAGE) return resources.getString(R.string.subtype_no_language)
-        if (hasNonDefaultScript(locale) || doesNotHaveAndroidName(locale.language)) {
-            // supply our own name for the language instead of using name provided by the system
-            val resId = resources.getIdentifier(
-                "subtype_${languageTag.replace("-", "_")}",
-                "string",
-                BuildConfig.APPLICATION_ID // replaces context.packageName, see https://stackoverflow.com/a/24525379
-            )
-            if (resId != 0) return resources.getString(resId)
-        }
-        val localeDisplayName = locale.getDisplayName(displayLocale)
-        return if (localeDisplayName == languageTag) {
-            locale.getDisplayName(Locale.US) // try fallback to English name, relevant e.g. fpr pms, see https://github.com/Helium314/HeliBoard/pull/748
-        } else {
-            localeDisplayName
-        }
+        // Since we only support Idu Mishmi, we can simplify this.
+        return resources.getString(R.string.idu_mishmi_ime_name)
     }
 
-    private fun hasNonDefaultScript(locale: Locale) = locale.script() != locale.language.constructLocale().script()
+    private fun hasNonDefaultScript(locale: Locale) = false // Always false for Idu Mishmi
 
-    private fun doesNotHaveAndroidName(language: String) =
-        language == "mns" || language == "xdq" || language=="dru" || language == "st" || language == "dag"
+    private fun doesNotHaveAndroidName(@Suppress("UNUSED_PARAMETER") language: String) = false // Always false for Idu Mishmi
 }

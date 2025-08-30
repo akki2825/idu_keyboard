@@ -328,7 +328,7 @@ public class Key implements Comparable<Key> {
         // Final attributes.
         mCode = key.mCode;
         mLabel = key.mLabel;
-        mHintLabel = PopopUtilKt.findPopupHintLabel(popupKeys, key.mHintLabel);
+        mHintLabel = key.mHintLabel;
         mLabelFlags = key.mLabelFlags;
         mIconName = key.mIconName;
         mWidth = key.mWidth;
@@ -677,10 +677,16 @@ public class Key implements Comparable<Key> {
     }
 
     public final int getPopupKeysColumnNumber() {
+        if (mPopupKeys != null) {
+            return mPopupKeys.length;
+        }
         return mPopupKeysColumnAndFlags & POPUP_KEYS_COLUMN_NUMBER_MASK;
     }
 
     public final boolean isPopupKeysFixedColumn() {
+        if (mPopupKeys != null) {
+            return true;
+        }
         return (mPopupKeysColumnAndFlags & POPUP_KEYS_FLAGS_FIXED_COLUMN) != 0;
     }
 
@@ -1112,7 +1118,11 @@ public class Key implements Comparable<Key> {
                 actionFlags |= ACTION_FLAGS_ENABLE_LONG_PRESS;
                 mPopupKeys = new PopupKeySpec[finalPopupKeys.length];
                 for (int i = 0; i < finalPopupKeys.length; i++) {
-                    mPopupKeys[i] = new PopupKeySpec(finalPopupKeys[i], needsToUpcase, localeForUpcasing);
+                    String popupKey = finalPopupKeys[i];
+                    if (!popupKey.startsWith("!text/") && !popupKey.startsWith("!code/") && !popupKey.startsWith("!icon/")) {
+                        popupKey = "!text/" + popupKey;
+                    }
+                    mPopupKeys[i] = new PopupKeySpec(popupKey, needsToUpcase, localeForUpcasing);
                 }
             } else {
                 mPopupKeys = null;

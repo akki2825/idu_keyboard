@@ -5,13 +5,13 @@
     SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
 -->
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" translatable="false">HeliBoard</string>
+    <string name="idu_mishmi_ime_name" translatable="false">Idu Mishmi Keyboard</string>
     <!-- Name of Android spell checker service. The app name should not be translated. -->
-    <string name="spell_checker_service_name">HeliBoard Spell Checker</string>
+    <string name="spell_checker_service_name">Idu Mishmi Spell Checker</string>
     <!-- Title for IME settings screen. The app name should not be translated. -->
-    <string name="ime_settings">HeliBoard Settings</string>
+    <string name="ime_settings">Idu Mishmi Settings</string>
     <!-- Title for the spell checking service settings screen. The app name should not be translated. -->
-    <string name="android_spell_checker_settings">HeliBoard Spell Checker Settings</string> <!-- todo: was used in top bar, but spell checker settings now don't have one -->
+    <string name="android_spell_checker_settings">Idu Mishmi Spell Checker Settings</string> <!-- todo: was used in top bar, but spell checker settings now don't have one -->
     <!-- Option to provide vibrate/haptic feedback on keypress -->
     <string name="vibrate_on_keypress">Vibrate on keypress</string>
     <!-- Option to provide vibrate/haptic feedback on keypress even in do not disturb mode -->
@@ -352,172 +352,8 @@
     <string name="prefs_space_bar_text">Custom text on space bar</string>
     <!-- Title of the setting for adding / removing custom font file -->
     <string name="custom_font">Set custom font from file</string>
-    <!-- Description for English (UK) keyboard subtype
-         (UK) should be an abbreviation of United Kingdom. -->
-    <string name="subtype_en_GB">English (UK)</string>
-    <!-- Description for English (US) keyboard subtype
-         (US) should be an abbreviation of United States. -->
-    <string name="subtype_en_US">English (US)</string>
-    <!-- Description for Spanish (US) keyboard subtype
-         (US) should be an abbreviation of United States. -->
-    <string name="subtype_es_US">Spanish (US)</string>
-    <!-- Description for Hinglish (https://en.wikipedia.org/wiki/Hinglish) keyboard subtype -->
-    <string name="subtype_hi_Latn">Hinglish</string>
-    <!-- Description for Mansi (https://en.wikipedia.org/wiki/Mansi_languages) keyboard subtype -->
-    <string name="subtype_mns">Mansi</string>
-    <!-- Description for Kaitag (https://en.wikipedia.org/wiki/Kaitag_language) keyboard subtype -->
-    <string name="subtype_xdq">Kaitag</string>
-    <!-- Description for Dagbani (https://en.wikipedia.org/wiki/Dagbani_language) keyboard subtype --> 
-    <string name="subtype_dag">Dagbani</string>
-    <!-- Description for Sesotho (https://en.wikipedia.org/wiki/Sesotho_language) keyboard subtype -->
-    <string name="subtype_st">Sesotho</string>
-    <!-- Description for Serbian (Latin) keyboard subtype -->
-    <string name="subtype_sr_Latn">Serbian (Latin)</string>
-    <!-- Description for English (UK) keyboard subtype with explicit keyboard layout
-         (UK) should be an abbreviation of United Kingdom.
-         This should be identical to subtype_en_GB aside from the trailing (%s). -->
-    <string name="subtype_with_layout_en_GB" tools:keep="@string/subtype_with_layout_en_GB">English (UK) (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <!-- Description for English (US) keyboard subtype with explicit keyboard layout
-         (US) should be an abbreviation of United States.
-         This should be identical to subtype_en_US aside from the trailing (%s). -->
-    <string name="subtype_with_layout_en_US" tools:keep="@string/subtype_with_layout_en_US">English (US) (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <!-- Description for Spanish (US) keyboard subtype with explicit keyboard layout
-         (US) should be an abbreviation of United States.
-         This should be identical to subtype_es_US aside from the trailing (%s). -->
-    <string name="subtype_with_layout_es_US" tools:keep="@string/subtype_with_layout_es_US">Spanish (US) (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <!-- Description for Hinglish (https://en.wikipedia.org/wiki/Hinglish) keyboard subtype with explicit keyboard layout
-         This should be identical to subtype_hi_ZZ aside from the trailing (%s). -->
-    <string name="subtype_with_layout_hi_Latn" tools:keep="@string/subtype_with_layout_hi_Latn">Hinglish (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <!-- Description for "LANGUAGE_NAME" (Extended) keyboard subtype -->
-    <string name="subtype_generic_extended"><xliff:g id="LANGUAGE_NAME" example="Kannada">%s</xliff:g> (Extended)</string>
-    <!-- Description for Serbian (Latin) keyboard subtype with explicit keyboard layout
-         This should be identical to subtype_sr_ZZ aside from the trailing (%s). -->
-    <string name="subtype_with_layout_mns" tools:keep="@string/subtype_with_layout_mns">Mansi (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <string name="subtype_dru">Dargwa (Urakhi)</string>
-    <string name="subtype_with_layout_dru" tools:keep="@string/subtype_with_layout_dru">Urakhi (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <string name="subtype_with_layout_xdq" tools:keep="@string/subtype_with_layout_xdq">Kaitag (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <!-- Description for Serbian (Latin) keyboard subtype with explicit keyboard layout
-         This should be identical to subtype_sr_ZZ aside from the trailing (%s). -->
-    <string name="subtype_with_layout_sr_Latn" tools:keep="@string/subtype_with_layout_sr_Latn">Serbian (<xliff:g id="KEYBOARD_LAYOUT" example="QWERTY">%s</xliff:g>)</string>
-    <!-- Description for "LANGUAGE_NAME" (Traditional) keyboard subtype -->
-    <string name="subtype_generic_traditional"><xliff:g id="LANGUAGE_NAME" example="Nepali">%s</xliff:g> (Traditional)</string>
-    <!-- Description for Bengali (Akkhor) keyboard subtype with explicit keyboard layout -->
-    <string name="subtype_with_layout_bn_BD"><xliff:g id="LANGUAGE_NAME" example="Bengali">%s</xliff:g> (Akkhor)</string>
-    <!-- Description for Bengali (Probhat) keyboard subtype with explicit keyboard layout -->
-    <string name="subtype_probhat_bn_BD"><xliff:g id="LANGUAGE_NAME" example="Bengali">%s</xliff:g> (Probhat)</string>
-    <!-- Description for Bengali (Baishakhi) keyboard subtype with explicit keyboard layout -->
-    <string name="subtype_baishakhi_bn_IN"><xliff:g id="LANGUAGE_NAME" example="Bengali">%s</xliff:g> (Baishakhi)</string>
-    <!-- Description for "LANGUAGE_NAME" (Compact) keyboard subtype -->
-    <string name="subtype_generic_compact"><xliff:g id="LANGUAGE_NAME" example="Hindi">%s</xliff:g> (Compact)</string>
-    <!-- Description for "LANGUAGE_NAME" (Phonetic) keyboard subtype -->
-    <string name="subtype_generic_phonetic"><xliff:g id="LANGUAGE_NAME" example="Hindi">%s</xliff:g> (Phonetic)</string>
-    <!-- Description for "LANGUAGE_NAME" (Sebeolsik 390) keyboard subtype -->
-    <string name="subtype_generic_sebeolsik_390"><xliff:g id="LANGUAGE_NAME" example="Korean">%s</xliff:g> (Sebeolsik 390)</string>
-    <!-- Description for "LANGUAGE_NAME" (Sebeolsik Final) keyboard subtype -->
-    <string name="subtype_generic_sebeolsik_final"><xliff:g id="LANGUAGE_NAME" example="Korean">%s</xliff:g> (Sebeolsik Final)</string>
-    <!-- Description for "LANGUAGE_NAME" (Student) keyboard subtype -->
-    <string name="subtype_generic_student"><xliff:g id="LANGUAGE_NAME" example="Russian">%s</xliff:g> (Student)</string>
-    <!-- This string is displayed in a language list that allows to choose a language for
-suggestions in a software keyboard. This setting won't give suggestions in any particular
-language, hence "No language".
-As for the "alphabet" mention, it refers specifically to the Latin alphabet, as opposed to
-Cyrillic, Arabic, Hebrew or other scripts. This keyboard offers no suggestions, but it will
-be a QWERTY, or AZERTY, or any other disposition that only offers Latin characters, so
-you wouldn't be able to type, say, Arabic on it. Please translate it in a way that "alphabet"
-would be understood to mean specifically the Latin alphabet, rather than any other
-alphabet. -->
-    <string name="subtype_no_language">No language (Alphabet)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the QWERTY
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_qwerty">Alphabet (QWERTY)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the QWERTZ
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_qwertz" tools:keep="@string/subtype_no_language_qwertz">Alphabet (QWERTZ)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the AZERTY
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_azerty" tools:keep="@string/subtype_no_language_azerty">Alphabet (AZERTY)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the Dvorak
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_dvorak" tools:keep="@string/subtype_no_language_dvorak">Alphabet (Dvorak)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the Colemak
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_colemak" tools:keep="@string/subtype_no_language_colemak">Alphabet (Colemak)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the QWERTY PC
-disposition that offers additional keys, but smaller keys compared to other common dispositions for
-mobile devices. -->
-    <string name="subtype_no_language_colemak_dh" tools:keep="@string/subtype_no_language_colemak_dh">Alphabet (Colemak Mod-DH)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the Workman
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_workman" tools:keep="@string/subtype_no_language_workman">Alphabet (Workman)</string>
-    <!-- This string is displayed in the description for a keyboard type. It refers specifically to
-the Latin alphabet, as opposed to Cyrillic, Arabic, Hebrew or other scripts.
-When the device is configured to use a language using a script other than the Latin alphabet, the
-user still needs a keyboard that can input Latin characters for passwords or login names for
-example, and a way to switch to this Latin alphabet keyboard. This string is the description for
-this keyboard, so users of other scripts should understand when they read this that it represents a
-keyboard that is meant for them to be able to enter Latin characters as opposed to the script they
-are used to. This keyboard does not provide a dictionary, and it is not tied to any specific
-language among those that use the Latin alphabet. This keyboard is laid out in the Bépo
-disposition rather than other common dispositions for Latin languages. -->
-    <string name="subtype_no_language_bepo" tools:keep="@string/subtype_no_language_bepo">Alphabet (Bépo)</string>
-    <string name="subtype_no_language_pcqwerty" tools:keep="@string/subtype_no_language_pcqwerty">Alphabet (PC)</string>
-    <!-- Description for Emoji keyboard subtype -->
+    <string name="subtype_idu_im"><xliff:g id="LANGUAGE_NAME" example="Idu Mishmi">%s</xliff:g> (Idu)</string>
+        <!-- Description for Emoji keyboard subtype -->
     <string name="subtype_emoji">Emoji</string>
     <!-- Title of the button to add custom style entry in the settings dialog. Preferably 10 characters or less. -->
     <string name="add">Add</string>

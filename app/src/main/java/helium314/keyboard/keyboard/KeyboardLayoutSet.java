@@ -26,7 +26,7 @@ import helium314.keyboard.latin.utils.InputTypeUtils;
 import helium314.keyboard.latin.utils.Log;
 import helium314.keyboard.latin.utils.ResourceUtils;
 import helium314.keyboard.latin.utils.ScriptUtils;
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils;
+import helium314.keyboard.latin.utils.SubtypeUtilsKt;
 
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
@@ -96,7 +96,6 @@ public final class KeyboardLayoutSet {
     public static void onSystemLocaleChanged() {
         clearKeyboardCache();
         LocaleKeyboardInfosKt.clearCache();
-        SubtypeLocaleUtils.clearDisplayNameCache();
     }
 
     public static void onKeyboardThemeChanged() {
@@ -235,11 +234,7 @@ public final class KeyboardLayoutSet {
         }
 
         public Builder setSubtype(@NonNull final RichInputMethodSubtype subtype) {
-            final boolean asciiCapable = subtype.getRawSubtype().isAsciiCapable();
-            final boolean forceAscii = (mParams.mEditorInfo.imeOptions & EditorInfo.IME_FLAG_FORCE_ASCII) != 0;
-            mParams.mSubtype = (forceAscii && !asciiCapable)
-                    ? RichInputMethodSubtype.Companion.getNoLanguageSubtype()
-                    : subtype;
+            mParams.mSubtype = subtype;
             return this;
         }
 
@@ -328,7 +323,8 @@ public final class KeyboardLayoutSet {
     public static KeyboardId getFakeKeyboardId(final int elementId) {
         final Params params = new Params();
         params.mEditorInfo = new EditorInfo();
-        params.mSubtype = RichInputMethodSubtype.Companion.getEmojiSubtype();
+        // Setting a dummy Idu Mishmi subtype for testing purposes.
+        params.mSubtype = RichInputMethodSubtype.Companion.getIduMishmiSubtype();
         params.mSubtype.getMainLayoutName();
         return new KeyboardId(elementId, params);
     }

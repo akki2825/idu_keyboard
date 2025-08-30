@@ -24,15 +24,12 @@ import helium314.keyboard.settings.previewDark
 @Composable
 fun MainSettingsScreen(
     onClickAbout: () -> Unit,
-    onClickTextCorrection: () -> Unit,
     onClickPreferences: () -> Unit,
     onClickToolbar: () -> Unit,
     onClickGestureTyping: () -> Unit,
     onClickAdvanced: () -> Unit,
     onClickAppearance: () -> Unit,
-    onClickLanguage: () -> Unit,
     onClickLayouts: () -> Unit,
-    onClickDictionaries: () -> Unit,
     onClickBack: () -> Unit,
 ) {
     val ctx = LocalContext.current
@@ -43,12 +40,13 @@ fun MainSettingsScreen(
     ) {
         val enabledSubtypes = SubtypeSettings.getEnabledSubtypes(true)
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            Preference(
-                name = stringResource(R.string.language_and_layouts_title),
-                description = enabledSubtypes.joinToString(", ") { it.displayName(ctx) },
-                onClick = onClickLanguage,
-                icon = R.drawable.ic_settings_languages
-            ) { NextScreenIcon() }
+            // Removed onClickLanguage as it is no longer supported
+            // Preference(
+            //    name = stringResource(R.string.language_and_layouts_title),
+            //    description = enabledSubtypes.joinToString(", ") { it.displayName(ctx) },
+            //    onClick = onClickLanguage,
+            //    icon = R.drawable.ic_settings_languages
+            // ) { NextScreenIcon() }
             Preference(
                 name = stringResource(R.string.settings_screen_preferences),
                 onClick = onClickPreferences,
@@ -70,21 +68,23 @@ fun MainSettingsScreen(
                     onClick = onClickGestureTyping,
                     icon = R.drawable.ic_settings_gesture
                 ) { NextScreenIcon() }
-            Preference(
-                name = stringResource(R.string.settings_screen_correction),
-                onClick = onClickTextCorrection,
-                icon = R.drawable.ic_settings_correction
-            ) { NextScreenIcon() }
+            // Removed onClickTextCorrection as it is no longer supported
+            // Preference(
+            //    name = stringResource(R.string.settings_screen_correction),
+            //    onClick = onClickTextCorrection,
+            //    icon = R.drawable.ic_settings_correction
+            // ) { NextScreenIcon() }
             Preference(
                 name = stringResource(R.string.settings_screen_secondary_layouts),
                 onClick = onClickLayouts,
                 icon = R.drawable.ic_ime_switcher
             ) { NextScreenIcon() }
-            Preference(
-                name = stringResource(R.string.dictionary_settings_category),
-                onClick = onClickDictionaries,
-                icon = R.drawable.ic_dictionary
-            ) { NextScreenIcon() }
+            // Removed onClickDictionaries as it is no longer supported
+            // Preference(
+            //    name = stringResource(R.string.dictionary_settings_category),
+            //    onClick = onClickDictionaries,
+            //    icon = R.drawable.ic_dictionary
+            // ) { NextScreenIcon() }
             Preference(
                 name = stringResource(R.string.settings_screen_advanced),
                 onClick = onClickAdvanced,
@@ -105,7 +105,7 @@ private fun PreviewScreen() {
     initPreview(LocalContext.current)
     Theme(previewDark) {
         Surface {
-            MainSettingsScreen({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})
+            MainSettingsScreen({}, {}, {}, {}, {}, {}, {}, {}) // Updated call site
         }
     }
 }

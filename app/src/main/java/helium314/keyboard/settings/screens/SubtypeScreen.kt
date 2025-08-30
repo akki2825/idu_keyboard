@@ -57,7 +57,6 @@ import helium314.keyboard.latin.utils.LayoutUtilsCustom
 import helium314.keyboard.latin.utils.Log
 import helium314.keyboard.latin.utils.ScriptUtils
 import helium314.keyboard.latin.utils.ScriptUtils.script
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils
 import helium314.keyboard.latin.utils.SubtypeSettings
 import helium314.keyboard.latin.utils.SubtypeUtilsAdditional
 import helium314.keyboard.latin.utils.appendLink
@@ -357,7 +356,7 @@ private fun MainLayoutRow(
         }
         DropDownField(
             items = appLayouts + customLayouts,
-            selectedItem = currentSubtype.mainLayoutName() ?: SubtypeLocaleUtils.QWERTY,
+            selectedItem = currentSubtype.mainLayoutName() ?: "qwerty", // Default to qwerty
             onSelected = {
                 setCurrentSubtype(currentSubtype.withLayout(LayoutType.MAIN, it))
             },
@@ -372,7 +371,7 @@ private fun MainLayoutRow(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.widthIn(min = 200.dp).fillMaxWidth()
             ) {
-                Text(SubtypeLocaleUtils.getDisplayNameInSystemLocale(it, currentSubtype.locale))
+                Text(it.getStringResourceOrName("layout_", ctx)) // Replaced SubtypeLocaleUtils.getDisplayNameInSystemLocale
                 Row (verticalAlignment = Alignment.CenterVertically) {
                     IconButton({ showLayoutEditDialog = it to null }) { Icon(painterResource(R.drawable.ic_edit), stringResource(R.string.edit_layout)) }
                     if (it in customLayouts)
@@ -414,8 +413,7 @@ private fun MainLayoutRow(
                 locale = currentSubtype.locale,
                 isNameValid = { it !in customLayouts },
                 onEdited = {
-                    if (layoutName !in customLayouts // edited a built-in layout, set new one as current
-                        || layoutName != it && layoutName == currentSubtype.mainLayoutName() // layout name for current subtype changed
+                    if (layoutName != it && layoutName == currentSubtype.mainLayoutName() // layout name for current subtype changed
                         )
                         setCurrentSubtype(currentSubtype.withLayout(LayoutType.MAIN, it))
                 }

@@ -18,6 +18,8 @@ import helium314.keyboard.latin.R;
 import helium314.keyboard.latin.common.StringUtils;
 import helium314.keyboard.latin.utils.TypefaceUtils;
 
+import java.util.Map;
+
 public final class PopupKeysKeyboard extends Keyboard {
     private final int mDefaultKeyCoordX;
 
@@ -244,10 +246,25 @@ public final class PopupKeysKeyboard extends Keyboard {
 
     public static class Builder extends KeyboardBuilder<PopupKeysKeyboardParams> {
         private final Key mParentKey;
+        private final PopupKeySpec[] mEffectivePopupKeys;
 
         private static final float LABEL_PADDING_RATIO = 0.2f;
         private static final float DIVIDER_RATIO = 0.2f;
 
+        private static final Map<String, String[]> IM_POPUP_KEYS = Map.of(
+            "a", new String[]{"à", "á", "â", "ä", "æ", "ã", "å", "ā", "ą", "ă", "ȁ", "ȃ"},
+            "A", new String[]{"À", "Á", "Â", "Ä", "Æ", "Ã", "Å", "Ā", "Ą", "Ă", "Ȁ", "Ȃ"},
+            "e", new String[]{"è", "é", "ê", "ë", "ē", "ė", "ę", "ẽ", "ə", "ə̃", "ɚ", "ɚ̃"},
+            "E", new String[]{"È", "É", "Ê", "Ë", "Ē", "Ė", "Ę", "Ẽ", "Ə", "Ə̃", "Ə˞", "Ə̃˞"},
+            "i", new String[]{"ì", "í", "î", "ï", "ī", "į", "ĩ"},
+            "I", new String[]{"Ì", "Í", "Î", "Ï", "Ī", "Į", "Ĩ"},
+            "o", new String[]{"ò", "ó", "ô", "ö", "ō", "ő", "ø", "œ", "õ"},
+            "O", new String[]{"Ò", "Ó", "Ô", "Ö", "Ō", "Ő", "Ø", "Œ", "Õ"},
+            "u", new String[]{"ù", "ú", "û", "ü", "ū", "ų", "ů", "ũ"},
+            "U", new String[]{"Ù", "Ú", "Û", "Ü", "Ū", "Ų", "Ů", "Ũ"}
+        );
+
+        
         /**
          * The builder of PopupKeysKeyboard.
          * @param context the context of {@link PopupKeysKeyboardView}.
@@ -298,14 +315,45 @@ public final class PopupKeysKeyboard extends Keyboard {
                 dividerWidth = 0;
             }
             final PopupKeySpec[] popupKeys = key.getPopupKeys();
+            
+            // Determine effective popup keys early to calculate proper column count
+            final String parentLabel = key.getLabel();
+            final PopupKeySpec[] effectivePopupKeys;
+            if (IM_POPUP_KEYS.containsKey(parentLabel)) {
+                final String[] hardcodedPopupStrings = IM_POPUP_KEYS.get(parentLabel);
+                effectivePopupKeys = new PopupKeySpec[hardcodedPopupStrings.length];
+                for (int i = 0; i < hardcodedPopupStrings.length; i++) {
+                    effectivePopupKeys[i] = new PopupKeySpec("!text/" + hardcodedPopupStrings[i], false, keyboard.mId.getLocale());
+                }
+            } else {
+                effectivePopupKeys = popupKeys;
+            }
+            
             final int defaultColumns = key.getPopupKeysColumnNumber();
             final int spaceForKeys = keyboard.mId.mWidth / keyWidth;
-            final int finalNumColumns = spaceForKeys >= Math.min(popupKeys.length, defaultColumns)
-                    ? defaultColumns
-                    : (spaceForKeys > 0 ? spaceForKeys : defaultColumns); // in last case setParameters will throw an exception
-            mParams.setParameters(popupKeys.length, finalNumColumns, keyWidth,
+            
+            // Force specific column layout for 'a' character to match 'e' layout
+            int finalNumColumns;
+            boolean isFixedColumn;
+            boolean isFixedOrder;
+            if (parentLabel.equals("a") || parentLabel.equals("A")) {
+                finalNumColumns = 6; // Force 6 columns for 2-row layout
+                isFixedColumn = true;
+                isFixedOrder = true;
+            } else {
+                finalNumColumns = spaceForKeys >= Math.min(effectivePopupKeys.length, defaultColumns)
+                        ? defaultColumns
+                        : (spaceForKeys > 0 ? spaceForKeys : defaultColumns); // in last case setParameters will throw an exception
+                isFixedColumn = key.isPopupKeysFixedColumn();
+                isFixedOrder = key.isPopupKeysFixedOrder();
+            }
+            
+            mParams.setParameters(effectivePopupKeys.length, finalNumColumns, keyWidth,
                     rowHeight, key.getX() + key.getWidth() / 2, keyboard.mId.mWidth,
-                    key.isPopupKeysFixedColumn(), key.isPopupKeysFixedOrder(), dividerWidth);
+                    isFixedColumn, isFixedOrder, dividerWidth);
+            
+            // Store the effective popup keys for use in build()
+            mEffectivePopupKeys = effectivePopupKeys;
         }
 
         private static int getMaxKeyWidth(final Key parentKey, final int minKeyWidth,
@@ -327,13 +375,20 @@ public final class PopupKeysKeyboard extends Keyboard {
         public PopupKeysKeyboard build() {
             final PopupKeysKeyboardParams params = mParams;
             final int popupKeyFlags = mParentKey.getPopupKeyLabelFlags();
-            final PopupKeySpec[] popupKeys = mParentKey.getPopupKeys();
             final int background = mParentKey.hasActionKeyPopups() ? Key.BACKGROUND_TYPE_ACTION : Key.BACKGROUND_TYPE_NORMAL;
-            for (int n = 0; n < popupKeys.length; n++) {
-                final PopupKeySpec popupKeySpec = popupKeys[n];
+            
+            // Use the effective popup keys calculated in constructor
+            final String parentLabel = mParentKey.getLabel();
+            android.util.Log.d("PopupKeysKeyboard", "Parent key label: " + parentLabel);
+            android.util.Log.d("PopupKeysKeyboard", "Final number of columns: " + params.mNumColumns);
+            android.util.Log.d("PopupKeysKeyboard", "Number of effective popup keys: " + mEffectivePopupKeys.length);
+            for (int n = 0; n < mEffectivePopupKeys.length; n++) {
+                final PopupKeySpec popupKeySpec = mEffectivePopupKeys[n];
+                // android.util.Log.d("PopupKeysKeyboard", "Building key for PopupKeySpec - label: " + popupKeySpec.mLabel + ", code: " + popupKeySpec.mCode + ", outputText: " + popupKeySpec.mOutputText);
                 final int row = n / params.mNumColumns;
                 final int x = params.getX(n, row);
                 final int y = params.getY(row);
+                
                 final Key key = popupKeySpec.buildKey(x, y, popupKeyFlags, background, params);
                 params.markAsEdgeKey(key, row);
                 params.onAddKey(key);

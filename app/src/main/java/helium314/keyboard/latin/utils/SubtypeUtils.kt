@@ -67,10 +67,10 @@ fun getResourceSubtypes(resources: Resources): List<InputMethodSubtype> {
 /** Workaround for SubtypeLocaleUtils.getSubtypeDisplayNameInSystemLocale ignoring custom layout names */
 // todo (later): this should be done properly and in SubtypeLocaleUtils
 fun InputMethodSubtype.displayName(context: Context): String {
-    val layoutName = SubtypeLocaleUtils.getMainLayoutName(this)
+    val layoutName = this.mainLayoutName() ?: "qwerty" // Default to qwerty if mainLayoutName is null
     if (LayoutUtilsCustom.isCustomLayout(layoutName))
         return "${locale().localizedDisplayName(context)} (${LayoutUtilsCustom.getDisplayName(layoutName)})"
-    return SubtypeLocaleUtils.getSubtypeDisplayNameInSystemLocale(this)
+    return locale().localizedDisplayName(context) // Directly use localizedDisplayName
 }
 
 fun getHasLocalizedNumberRow(subtype: InputMethodSubtype, prefs: SharedPreferences): Boolean =

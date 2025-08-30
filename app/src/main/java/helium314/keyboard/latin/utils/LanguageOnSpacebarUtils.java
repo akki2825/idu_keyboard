@@ -52,7 +52,7 @@ public final class LanguageOnSpacebarUtils {
         for (final InputMethodSubtype ims : sEnabledSubtypes) {
             final String language = SubtypeUtilsKt.locale(ims).getLanguage();
             if (keyboardLanguage.equals(language) && keyboardLayout.equals(
-                    SubtypeLocaleUtils.getMainLayoutName(ims))) {
+                    SubtypeUtilsKt.mainLayoutName(ims))) {
                 sameLanguageAndLayoutCount++;
             }
         }

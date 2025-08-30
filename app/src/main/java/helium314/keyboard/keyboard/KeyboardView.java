@@ -403,10 +403,10 @@ public class KeyboardView extends View {
                 // The label is placed off center of the key. Currently used only on "phone number" layout
                 // to have letter hints shown nicely. We don't want to align it off center if hints are off.
                 // use a non-negative number to avoid label starting left of the letter for high keyboard scale on holo phone layout
-                labelX = Math.max(0f, centerX + params.mLabelOffCenterRatio * labelCharWidth);
+                // labelX = Math.max(0f, centerX + params.mLabelOffCenterRatio * labelCharWidth);
                 paint.setTextAlign(Align.LEFT);
             } else {
-                labelX = centerX;
+                // labelX = centerX;
                 paint.setTextAlign(Align.CENTER);
             }
             if (key.needsAutoXScale()) {

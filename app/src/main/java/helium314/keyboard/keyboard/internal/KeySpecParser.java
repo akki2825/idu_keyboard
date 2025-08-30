@@ -132,6 +132,9 @@ public final class KeySpecParser {
         if (hasIcon(keySpec)) {
             return null;
         }
+        if (keySpec.startsWith("!text/")) {
+            return parseEscape(keySpec.substring("!text/".length()));
+        }
         final int labelEnd = indexOfLabelEnd(keySpec);
         final String label = parseEscape(getBeforeLabelEnd(keySpec, labelEnd));
         if (label.isEmpty() && DebugFlags.DEBUG_ENABLED) {

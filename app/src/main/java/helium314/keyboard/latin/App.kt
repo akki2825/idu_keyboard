@@ -462,7 +462,8 @@ fun checkVersionUpgrade(context: Context) {
                 }
                 if (okMatch.isNotEmpty())
                     okMatch.first().toSettingsSubtype().toPref()
-                else resourceSubtypes.first { it.locale().language == languageTag.constructLocale().language }
+                else (resourceSubtypes.firstOrNull { it.locale().language == languageTag.constructLocale().language } // changed from .first()
+                    ?: SubtypeSettings.getEnabledSubtypes(true).first()) // changed to public method
                     .toSettingsSubtype().toPref()
             }
             prefs.edit().putString(key, new).apply()

@@ -15,9 +15,10 @@ private const val POPUP_KEYS_SYMBOLS = "symbols"
 private const val POPUP_KEYS_LANGUAGE = "language"
 const val POPUP_KEYS_LABEL_DEFAULT = POPUP_KEYS_NUMBER + Separators.KV + true + Separators.ENTRY + POPUP_KEYS_LANGUAGE_PRIORITY +
         Separators.KV + false + Separators.ENTRY + POPUP_KEYS_LAYOUT + Separators.KV + true + Separators.ENTRY +
-        POPUP_KEYS_SYMBOLS + Separators.KV + true + Separators.ENTRY + POPUP_KEYS_LANGUAGE + Separators.KV + false
+        POPUP_KEYS_SYMBOLS + Separators.KV + true + Separators.ENTRY + POPUP_KEYS_LANGUAGE + Separators.KV + true
 const val POPUP_KEYS_ORDER_DEFAULT = POPUP_KEYS_LANGUAGE_PRIORITY + Separators.KV + true + Separators.ENTRY + POPUP_KEYS_NUMBER +
-        Separators.KV + true + Separators.ENTRY + POPUP_KEYS_SYMBOLS + Separators.KV + true + Separators.ENTRY +
+        Separators.KV + true + Separators.ENTRY + POPUP_KEYS_LANGUAGE + Separators.KV + true + Separators.ENTRY +
+        POPUP_KEYS_SYMBOLS + Separators.KV + true + Separators.ENTRY +
         POPUP_KEYS_LAYOUT + Separators.KV + true + Separators.ENTRY + POPUP_KEYS_LANGUAGE + Separators.KV + true
 
 private val allPopupKeyTypes = listOf(POPUP_KEYS_NUMBER, POPUP_KEYS_LAYOUT, POPUP_KEYS_SYMBOLS, POPUP_KEYS_LANGUAGE, POPUP_KEYS_LANGUAGE_PRIORITY)
@@ -31,7 +32,7 @@ fun createPopupKeysArray(popupSet: PopupSet<*>?, params: KeyboardParams, label: 
         when (type) {
             POPUP_KEYS_NUMBER -> popupSet?.numberLabel?.let { popupKeys.add(it) }
             POPUP_KEYS_LAYOUT -> popupSet?.getPopupKeyLabels(params)?.let { popupKeys.addAll(it) }
-            POPUP_KEYS_SYMBOLS -> popupSet?.symbol?.let { popupKeys.add(it) }
+            POPUP_KEYS_SYMBOLS -> popupSet?.symbol?.let { popupKeys.addAll(it) }
             POPUP_KEYS_LANGUAGE -> params.mLocaleKeyboardInfos.getPopupKeys(label)?.let { popupKeys.addAll(it) }
             POPUP_KEYS_LANGUAGE_PRIORITY -> params.mLocaleKeyboardInfos.getPriorityPopupKeys(label)?.let { popupKeys.addAll(it) }
         }
@@ -66,7 +67,7 @@ fun getHintLabel(popupSet: PopupSet<*>?, params: KeyboardParams, label: String):
         when (type) {
             POPUP_KEYS_NUMBER -> popupSet?.numberLabel?.let { hintLabel = it }
             POPUP_KEYS_LAYOUT -> popupSet?.getPopupKeyLabels(params)?.let { hintLabel = it.firstOrNull() }
-            POPUP_KEYS_SYMBOLS -> popupSet?.symbol?.let { hintLabel = it }
+            POPUP_KEYS_SYMBOLS -> popupSet?.symbol?.let { hintLabel = it.firstOrNull() }
             POPUP_KEYS_LANGUAGE -> params.mLocaleKeyboardInfos.getPopupKeys(label)?.let { hintLabel = it.firstOrNull() }
             POPUP_KEYS_LANGUAGE_PRIORITY -> params.mLocaleKeyboardInfos.getPriorityPopupKeys(label)?.let { hintLabel = it.firstOrNull() }
         }

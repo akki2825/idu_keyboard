@@ -12,6 +12,7 @@ import androidx.core.content.edit
 import helium314.keyboard.compat.locale
 import helium314.keyboard.keyboard.KeyboardSwitcher
 import helium314.keyboard.latin.RichInputMethodManager
+import helium314.keyboard.latin.common.Constants
 import helium314.keyboard.latin.common.Constants.Separators
 import helium314.keyboard.latin.common.LocaleUtils
 import helium314.keyboard.latin.define.DebugFlags
@@ -21,8 +22,10 @@ import helium314.keyboard.latin.settings.SettingsSubtype
 import helium314.keyboard.latin.settings.SettingsSubtype.Companion.toSettingsSubtype
 import helium314.keyboard.latin.utils.ScriptUtils.script
 import java.util.Locale
+import helium314.keyboard.latin.R
 
 object SubtypeSettings {
+    private val localeIm = Locale.Builder().setLanguage("im").build()
     /** @return enabled subtypes. If no subtypes are enabled, but a contextForFallback is provided,
      *  subtypes for system locales will be returned, or en-US if none found. */
     fun getEnabledSubtypes(fallback: Boolean = false): List<InputMethodSubtype> {
@@ -180,7 +183,7 @@ object SubtypeSettings {
         subtypes.map { it.toPref() }.toSortedSet().joinToString(Separators.SETS)
 
     fun init(context: Context) {
-        SubtypeLocaleUtils.init(context) // necessary to get the correct getKeyboardLayoutSetName
+        // SubtypeLocaleUtils.init(context) // removed as SubtypeLocaleUtils is deleted
 
         // necessary to set system locales at start, because for some weird reason (bug?)
         // LocaleManagerCompat.getSystemLocales(context) sometimes doesn't return all system locales
@@ -202,7 +205,15 @@ object SubtypeSettings {
         }
         if (subtypes.isEmpty()) {
             // hardcoded fallback to en-US for weird cases
-            systemSubtypes.add(resourceSubtypesByLocale[Locale.US]!!.first())
+            systemSubtypes.add(resourceSubtypesByLocale[Locale.US]?.first() ?: InputMethodSubtype.InputMethodSubtypeBuilder()
+                .setSubtypeNameResId(R.string.idu_mishmi_ime_name)
+                .setSubtypeIconResId(R.drawable.ic_ime_switcher)
+                .setSubtypeLocale(Locale.US.toString())
+                .setSubtypeMode(Constants.Subtype.KEYBOARD_MODE)
+                .setSubtypeExtraValue(Constants.Subtype.ExtraValue.IS_ADDITIONAL_SUBTYPE)
+                .setIsAuxiliary(false)
+                .build()
+            )
         } else {
             systemSubtypes.addAll(subtypes)
         }
@@ -213,6 +224,15 @@ object SubtypeSettings {
         getResourceSubtypes(resources).forEach {
             resourceSubtypesByLocale.getOrPut(it.locale()) { ArrayList(2) }.add(it)
         }
+        val imSubtype = InputMethodSubtype.InputMethodSubtypeBuilder()
+            .setSubtypeNameResId(R.string.idu_mishmi_ime_name) // Using a generic name for now
+            .setSubtypeIconResId(R.drawable.ic_ime_switcher)
+            .setSubtypeLocale(localeIm.language) // Changed to use localeIm.language
+            .setSubtypeMode(Constants.Subtype.KEYBOARD_MODE)
+            .setSubtypeExtraValue(Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET + "=MAIN:im")
+            .setIsAuxiliary(false)
+            .build()
+        resourceSubtypesByLocale.getOrPut(localeIm) { ArrayList(2) }.add(imSubtype)
     }
 
     // remove custom subtypes without a layout file
@@ -222,7 +242,7 @@ object SubtypeSettings {
         val customLayoutFiles by lazy { LayoutUtilsCustom.getLayoutFiles(LayoutType.MAIN, context).map { it.name } }
         val subtypesToRemove = mutableListOf<String>()
         additionalSubtypes.forEach {
-            val name = it.toSettingsSubtype().mainLayoutName() ?: SubtypeLocaleUtils.QWERTY
+            val name = it.toSettingsSubtype().mainLayoutName() ?: "qwerty" // Default to qwerty
             if (!LayoutUtilsCustom.isCustomLayout(name)) return@forEach
             if (name !in customLayoutFiles)
                 subtypesToRemove.add(it)
@@ -260,7 +280,7 @@ object SubtypeSettings {
                 continue
             }
 
-            val subtype = subtypesForLocale.firstOrNull { SubtypeLocaleUtils.getMainLayoutName(it) == (settingsSubtype.mainLayoutName() ?: SubtypeLocaleUtils.QWERTY) }
+            val subtype = subtypesForLocale.firstOrNull { it.mainLayoutName() == (settingsSubtype.mainLayoutName() ?: "qwerty") }
             if (subtype == null) {
                 val message = "subtype $settingsSubtype could not be loaded"
                 Log.w(TAG, message)

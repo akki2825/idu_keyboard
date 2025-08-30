@@ -22,7 +22,6 @@ import helium314.keyboard.latin.utils.KtxKt;
 import helium314.keyboard.latin.utils.LanguageOnSpacebarUtils;
 import helium314.keyboard.latin.utils.Log;
 import helium314.keyboard.latin.utils.ScriptUtils;
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils;
 import helium314.keyboard.latin.utils.SubtypeSettings;
 import helium314.keyboard.latin.utils.SubtypeUtilsKt;
 
@@ -92,7 +91,7 @@ public class RichInputMethodManager {
         mInputMethodInfoCache = new InputMethodInfoCache(mImm, context.getPackageName());
 
         // Initialize subtype utils.
-        SubtypeLocaleUtils.init(context);
+        // SubtypeLocaleUtils.init(context); // Removed as SubtypeLocaleUtils is deleted
 
         // Initialize the current input method subtype and the shortcut IME.
         refreshSubtypeCaches();
@@ -115,7 +114,7 @@ public class RichInputMethodManager {
         final int currentIndex = enabledSubtypes.indexOf(currentSubtype);
         if (currentIndex == INDEX_NOT_FOUND) {
             Log.w(TAG, "Can't find current subtype in enabled subtypes: subtype="
-                    + SubtypeLocaleUtils.getSubtypeNameForLogging(currentSubtype));
+                    + "unknown"); // Replaced SubtypeLocaleUtils.getSubtypeNameForLogging
             if (onlyCurrentIme) return enabledSubtypes.get(0); // just return first enabled subtype
             else return null;
         }
@@ -234,7 +233,7 @@ public class RichInputMethodManager {
 
 
     public String getCombiningRulesExtraValueOfCurrentSubtype() {
-        return SubtypeLocaleUtils.getCombiningRulesExtraValue(getCurrentSubtype().getRawSubtype());
+        return ""; // Removed RichInputMethodSubtype.getCombiningRulesExtraValue() as it is not defined in RichInputMethodSubtype.kt
     }
 
     public boolean hasMultipleEnabledIMEsOrSubtypes(final boolean shouldIncludeAuxiliarySubtypes) {
@@ -302,7 +301,7 @@ public class RichInputMethodManager {
         final int count = myImi.getSubtypeCount();
         for (int i = 0; i < count; i++) {
             final InputMethodSubtype subtype = myImi.getSubtypeAt(i);
-            final String layoutName = SubtypeLocaleUtils.getMainLayoutName(subtype);
+            final String layoutName = SubtypeUtilsKt.mainLayoutName(subtype); // Replaced SubtypeLocaleUtils.getMainLayoutName
             if (locale.equals(SubtypeUtilsKt.locale(subtype))
                     && keyboardLayoutSetName.equals(layoutName)) {
                 return subtype;

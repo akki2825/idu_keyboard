@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import com.android.inputmethod.latin.BinaryDictionary;
 
 import helium314.keyboard.latin.utils.Log;
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -63,12 +62,12 @@ public class UserBinaryDictionary extends ExpandableBinaryDictionary {
         super(context, getDictName(name, locale, dictFile), locale, Dictionary.TYPE_USER, dictFile);
         if (null == locale) throw new NullPointerException(); // Catch the error earlier
         final String localeStr = locale.toString();
-        if (SubtypeLocaleUtils.NO_LANGUAGE.equals(localeStr)) {
+        // if (SubtypeLocaleUtils.NO_LANGUAGE.equals(localeStr)) { // Removed as SubtypeLocaleUtils is deleted
             // If we don't have a locale, insert into the "all locales" user dictionary.
-            mLocaleString = USER_DICTIONARY_ALL_LANGUAGES;
-        } else {
+        //    mLocaleString = USER_DICTIONARY_ALL_LANGUAGES;
+        // } else {
             mLocaleString = localeStr;
-        }
+        // }
         mAlsoUseMoreRestrictiveLocales = alsoUseMoreRestrictiveLocales;
 
         mObserver = new ContentObserver(null) {

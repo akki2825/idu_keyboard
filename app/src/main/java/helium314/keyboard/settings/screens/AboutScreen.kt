@@ -64,7 +64,7 @@ fun AboutScreen(
 }
 
 fun createAboutSettings(context: Context) = listOf(
-    Setting(context, SettingsWithoutKey.APP, R.string.english_ime_name, R.string.app_slogan) {
+    Setting(context, SettingsWithoutKey.APP, R.string.idu_mishmi_ime_name, R.string.app_slogan) {
         Preference(
             name = it.title,
             description = it.description,
@@ -163,7 +163,7 @@ fun createAboutSettings(context: Context) = listOf(
                     .addCategory(Intent.CATEGORY_OPENABLE)
                     .putExtra(
                         Intent.EXTRA_TITLE,
-                        ctx.getString(R.string.english_ime_name)
+                        ctx.getString(R.string.idu_mishmi_ime_name)
                             .replace(" ", "_") + "_log_$date.txt"
                     )
                     .setType("text/plain")

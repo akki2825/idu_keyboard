@@ -25,39 +25,37 @@ import java.util.Locale
  * @param locale the locale for which to create the dictionary
  * @return an initialized instance of DictionaryCollection
  */
-fun createMainDictionary(context: Context, locale: Locale): DictionaryCollection {
-    val cacheDir = DictionaryInfoUtils.getAndCreateCacheDirectoryForLocale(locale, context)
+fun createMainDictionary(context: Context, @Suppress("UNUSED_PARAMETER") locale: Locale): DictionaryCollection {
+    val iduMishmiLocale = Locale.forLanguageTag("idm-IN")
+    val cacheDir = DictionaryInfoUtils.getAndCreateCacheDirectoryForLocale(iduMishmiLocale, context)
     val dictList = LinkedList<Dictionary>()
     // get cached dict files
-    val (userDicts, extractedDicts) = DictionaryInfoUtils.getCachedDictsForLocale(locale, context)
+    val (userDicts, extractedDicts) = DictionaryInfoUtils.getCachedDictsForLocale(iduMishmiLocale, context)
         .partition { it.name.endsWith(DictionaryInfoUtils.USER_DICTIONARY_SUFFIX) }
     // add user dicts to list
-    userDicts.forEach { checkAndAddDictionaryToListIfNotExisting(it, dictList, locale) }
+    userDicts.forEach { checkAndAddDictionaryToListIfNotExisting(it, dictList, iduMishmiLocale) }
     // add extracted dicts to list (after userDicts, to skip extracted dicts of same type)
-    extractedDicts.forEach { checkAndAddDictionaryToListIfNotExisting(it, dictList, locale) }
+    extractedDicts.forEach { checkAndAddDictionaryToListIfNotExisting(it, dictList, iduMishmiLocale) }
     if (dictList.any { it.mDictType == Dictionary.TYPE_MAIN })
-        return DictionaryCollection(Dictionary.TYPE_MAIN, locale, dictList)
+        return DictionaryCollection(Dictionary.TYPE_MAIN, iduMishmiLocale, dictList)
 
     // no main dict found -> check assets
     val assetsDicts = DictionaryInfoUtils.getAssetsDictionaryList(context)
     // file name is <type>_<language tag>.dict
-    val dictsByType = assetsDicts?.groupBy { it.substringBefore("_") }
     // for each type find the best match
-    dictsByType?.forEach { (dictType, dicts) ->
-        val bestMatch = LocaleUtils.getBestMatch(locale, dicts) { it.substringAfter("_")
-            .substringBefore(".").constructLocale() } ?: return@forEach
-        // extract dict and add extracted file
-        val targetFile = File(cacheDir, "$dictType.dict")
+    // we only care about idu_mishmi.dict
+    if (assetsDicts?.contains("main_idu_mishmi.dict") == true) {
+        val targetFile = File(cacheDir, "main.dict")
         FileUtils.copyStreamToNewFile(
-            context.assets.open(DictionaryInfoUtils.ASSETS_DICTIONARY_FOLDER + File.separator + bestMatch),
+            context.assets.open(DictionaryInfoUtils.ASSETS_DICTIONARY_FOLDER + File.separator + "main_idu_mishmi.dict"),
             targetFile
         )
-        checkAndAddDictionaryToListIfNotExisting(targetFile, dictList, locale)
+        checkAndAddDictionaryToListIfNotExisting(targetFile, dictList, iduMishmiLocale)
     }
     // If the list is empty, that means we should not use any dictionary (for example, the user
     // explicitly disabled the main dictionary), so the following is okay. dictList is never
     // null, but if for some reason it is, DictionaryCollection handles it gracefully.
-    return DictionaryCollection(Dictionary.TYPE_MAIN, locale, dictList)
+    return DictionaryCollection(Dictionary.TYPE_MAIN, iduMishmiLocale, dictList)
 }
 
 /**
@@ -75,12 +73,7 @@ private fun checkAndAddDictionaryToListIfNotExisting(file: File, dicts: MutableL
     )
 
     if (readOnlyBinaryDictionary.isValidDictionary) {
-        if (locale.language == "ko") {
-            // Use KoreanDictionary for Korean locale
-            dicts.add(KoreanDictionary(readOnlyBinaryDictionary))
-        } else {
-            dicts.add(readOnlyBinaryDictionary)
-        }
+        dicts.add(readOnlyBinaryDictionary)
     } else {
         readOnlyBinaryDictionary.close()
         killDictionary(file)

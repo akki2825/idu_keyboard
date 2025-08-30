@@ -8,13 +8,11 @@ package helium314.keyboard.latin
 import android.view.inputmethod.InputMethodSubtype
 import android.view.inputmethod.InputMethodSubtype.InputMethodSubtypeBuilder
 import helium314.keyboard.latin.common.Constants
-import helium314.keyboard.latin.common.Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET
-import helium314.keyboard.latin.common.LocaleUtils.constructLocale
 import helium314.keyboard.latin.common.LocaleUtils.isRtlLanguage
 import helium314.keyboard.latin.utils.LayoutType
 import helium314.keyboard.latin.utils.LayoutUtilsCustom
 import helium314.keyboard.latin.utils.Log
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils
+// import helium314.keyboard.latin.utils.SubtypeLocaleUtils // Removed this import
 import helium314.keyboard.latin.utils.locale
 import java.util.Locale
 
@@ -25,36 +23,26 @@ class RichInputMethodSubtype private constructor(val rawSubtype: InputMethodSubt
     val locale: Locale = rawSubtype.locale()
 
     // The subtype is considered RTL if the language of the main subtype is RTL.
-    val isRtlSubtype: Boolean = isRtlLanguage(locale)
+    val isRtlSubtype: Boolean = false
 
     fun getExtraValueOf(key: String): String? = rawSubtype.getExtraValueOf(key)
 
     fun hasExtraValue(key: String): Boolean = rawSubtype.containsExtraValueKey(key)
 
-    val isNoLanguage: Boolean get() = SubtypeLocaleUtils.NO_LANGUAGE == locale.language
+    val isNoLanguage: Boolean get() = false
 
     val mainLayoutName: String get() = layouts[LayoutType.MAIN] ?: "qwerty"
 
     /** layout names for this subtype by LayoutType */
-    val layouts = LayoutType.getLayoutMap(getExtraValueOf(KEYBOARD_LAYOUT_SET) ?: "")
+    val layouts = LayoutType.getLayoutMap(getExtraValueOf(Constants.Subtype.ExtraValue.KEYBOARD_LAYOUT_SET) ?: "")
 
     val isCustom: Boolean get() = LayoutUtilsCustom.isCustomLayout(mainLayoutName)
 
     val fullDisplayName: String get() {
-            if (isNoLanguage) {
-                return SubtypeLocaleUtils.getMainLayoutDisplayName(rawSubtype)!!
-            }
-            return SubtypeLocaleUtils.getSubtypeLocaleDisplayName(locale)
+            return "Idu Mishmi"
         }
 
-    val middleDisplayName: String
-        // Get the RichInputMethodSubtype's middle display name in its locale.
-        get() {
-            if (isNoLanguage) {
-                return SubtypeLocaleUtils.getMainLayoutDisplayName(rawSubtype)!!
-            }
-            return SubtypeLocaleUtils.getSubtypeLanguageDisplayName(locale)
-        }
+    val middleDisplayName: String get() = "Idu Mishmi"
 
     override fun equals(other: Any?): Boolean {
         if (other !is RichInputMethodSubtype) return false
@@ -71,65 +59,21 @@ class RichInputMethodSubtype private constructor(val rawSubtype: InputMethodSubt
         private val TAG: String = RichInputMethodSubtype::class.java.simpleName
 
         fun get(subtype: InputMethodSubtype?): RichInputMethodSubtype =
-            if (subtype == null) noLanguageSubtype
-            else RichInputMethodSubtype(subtype)
+            // always return idu mishmi subtype
+            IduMishmiSubtype
 
-        // Dummy no language QWERTY subtype. See method_dummy.xml}.
-        private const val EXTRA_VALUE_OF_DUMMY_NO_LANGUAGE_SUBTYPE = ("KeyboardLayoutSet=" + SubtypeLocaleUtils.QWERTY
-                + "," + Constants.Subtype.ExtraValue.ASCII_CAPABLE
-                + "," + Constants.Subtype.ExtraValue.ENABLED_WHEN_DEFAULT_IS_NOT_ASCII_CAPABLE
-                + "," + Constants.Subtype.ExtraValue.EMOJI_CAPABLE)
-        private val DUMMY_NO_LANGUAGE_SUBTYPE = RichInputMethodSubtype(
+        val IduMishmiSubtype = RichInputMethodSubtype(
             InputMethodSubtypeBuilder()
-                .setSubtypeNameResId(R.string.subtype_no_language_qwerty)
+                .setSubtypeNameResId(R.string.idu_mishmi_ime_name)
                 .setSubtypeIconResId(R.drawable.ic_ime_switcher)
-                .setSubtypeLocale(SubtypeLocaleUtils.NO_LANGUAGE)
+                .setSubtypeLocale(Locale.forLanguageTag("idm-IN").toLanguageTag()) // Idu Mishmi language tag
                 .setSubtypeMode(Constants.Subtype.KEYBOARD_MODE)
-                .setSubtypeExtraValue(EXTRA_VALUE_OF_DUMMY_NO_LANGUAGE_SUBTYPE)
+                .setSubtypeExtraValue("KeyboardLayoutSet=idu_mishmi") // Custom layout set
                 .setIsAuxiliary(false)
-                .setOverridesImplicitlyEnabledSubtype(false)
-                .setSubtypeId(0x7000000f)
+                .setOverridesImplicitlyEnabledSubtype(true)
+                .setSubtypeId(0x70000001) // Unique ID for Idu Mishmi
                 .setIsAsciiCapable(true)
                 .build()
         )
-
-        // Caveat: We probably should remove this when we add an Emoji subtype in {@link R.xml.method}.
-        // Dummy Emoji subtype. See {@link R.xml.method}.
-        private const val SUBTYPE_ID_OF_DUMMY_EMOJI_SUBTYPE = -0x2874d130
-        private const val EXTRA_VALUE_OF_DUMMY_EMOJI_SUBTYPE = ("KeyboardLayoutSet=" + SubtypeLocaleUtils.EMOJI
-                + "," + Constants.Subtype.ExtraValue.EMOJI_CAPABLE)
-        val emojiSubtype: RichInputMethodSubtype = RichInputMethodSubtype(
-            InputMethodSubtypeBuilder()
-                .setSubtypeNameResId(R.string.subtype_emoji)
-                .setSubtypeIconResId(R.drawable.ic_ime_switcher)
-                .setSubtypeLocale(SubtypeLocaleUtils.NO_LANGUAGE)
-                .setSubtypeMode(Constants.Subtype.KEYBOARD_MODE)
-                .setSubtypeExtraValue(EXTRA_VALUE_OF_DUMMY_EMOJI_SUBTYPE)
-                .setIsAuxiliary(false)
-                .setOverridesImplicitlyEnabledSubtype(false)
-                .setSubtypeId(SUBTYPE_ID_OF_DUMMY_EMOJI_SUBTYPE)
-                .build()
-        )
-        private var sNoLanguageSubtype: RichInputMethodSubtype? = null
-
-        val noLanguageSubtype: RichInputMethodSubtype get() {
-            sNoLanguageSubtype?.let { return it }
-            var noLanguageSubtype = sNoLanguageSubtype
-            val rawNoLanguageSubtype = RichInputMethodManager.getInstance()
-                .findSubtypeByLocaleAndKeyboardLayoutSet(
-                    SubtypeLocaleUtils.NO_LANGUAGE.constructLocale(),
-                    SubtypeLocaleUtils.QWERTY
-                )
-            if (rawNoLanguageSubtype != null) {
-                noLanguageSubtype = RichInputMethodSubtype(rawNoLanguageSubtype)
-            }
-            if (noLanguageSubtype != null) {
-                sNoLanguageSubtype = noLanguageSubtype
-                return noLanguageSubtype
-            }
-            Log.w(TAG, "Can't find any language with QWERTY subtype")
-            Log.w(TAG, "No input method subtype found; returning dummy subtype: $DUMMY_NO_LANGUAGE_SUBTYPE")
-            return DUMMY_NO_LANGUAGE_SUBTYPE
-        }
     }
 }

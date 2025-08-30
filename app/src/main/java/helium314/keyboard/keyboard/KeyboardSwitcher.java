@@ -49,8 +49,9 @@ import helium314.keyboard.latin.utils.Log;
 import helium314.keyboard.latin.utils.RecapitalizeStatus;
 import helium314.keyboard.latin.utils.ResourceUtils;
 import helium314.keyboard.latin.utils.ScriptUtils;
-import helium314.keyboard.latin.utils.SubtypeLocaleUtils;
+import helium314.keyboard.latin.utils.SubtypeSettings;
 import helium314.keyboard.latin.utils.SubtypeUtilsAdditional;
+import helium314.keyboard.latin.utils.SubtypeUtilsKt;
 
 public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
     private static final String TAG = KeyboardSwitcher.class.getSimpleName();
@@ -156,23 +157,18 @@ public final class KeyboardSwitcher implements KeyboardState.SwitchActions {
             mState.onLoadKeyboard(currentAutoCapsState, currentRecapitalizeState, oneHandedModeEnabled);
         } catch (KeyboardLayoutSetException e) {
             Log.e(TAG, "loading keyboard failed: " + e.mKeyboardId, e.getCause());
-            try {
-                final InputMethodSubtype qwerty = SubtypeUtilsAdditional.INSTANCE
-                        .createEmojiCapableAdditionalSubtype(mRichImm.getCurrentSubtypeLocale(), SubtypeLocaleUtils.QWERTY, true);
-                mKeyboardLayoutSet = builder.setKeyboardGeometry(keyboardWidth, keyboardHeight)
-                        .setSubtype(RichInputMethodSubtype.Companion.get(qwerty))
-                        .setVoiceInputKeyEnabled(settingsValues.mShowsVoiceInputKey)
-                        .setNumberRowEnabled(settingsValues.mShowsNumberRow)
-                        .setLanguageSwitchKeyEnabled(settingsValues.isLanguageSwitchKeyEnabled())
-                        .setEmojiKeyEnabled(settingsValues.mShowsEmojiKey)
-                        .setSplitLayoutEnabled(settingsValues.mIsSplitKeyboardEnabled)
-                        .setOneHandedModeEnabled(oneHandedModeEnabled)
-                        .build();
-                mState.onLoadKeyboard(currentAutoCapsState, currentRecapitalizeState, oneHandedModeEnabled);
-                showToast("error loading the keyboard, falling back to qwerty", false);
-            } catch (KeyboardLayoutSetException e2) {
-                Log.e(TAG, "even fallback to qwerty failed: " + e2.mKeyboardId, e2.getCause());
-            }
+            // Fallback to Idu Mishmi subtype if loading the preferred keyboard fails.
+            mKeyboardLayoutSet = builder.setKeyboardGeometry(keyboardWidth, keyboardHeight)
+                    .setSubtype(RichInputMethodSubtype.Companion.getIduMishmiSubtype())
+                    .setVoiceInputKeyEnabled(settingsValues.mShowsVoiceInputKey)
+                    .setNumberRowEnabled(settingsValues.mShowsNumberRow)
+                    .setLanguageSwitchKeyEnabled(settingsValues.isLanguageSwitchKeyEnabled())
+                    .setEmojiKeyEnabled(settingsValues.mShowsEmojiKey)
+                    .setSplitLayoutEnabled(settingsValues.mIsSplitKeyboardEnabled)
+                    .setOneHandedModeEnabled(oneHandedModeEnabled)
+                    .build();
+            mState.onLoadKeyboard(currentAutoCapsState, currentRecapitalizeState, oneHandedModeEnabled);
+            showToast("error loading the keyboard, falling back to Idu Mishmi", false);
         }
     }
 

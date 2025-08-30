@@ -483,9 +483,15 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
     @Nullable
     public PopupKeysPanel showPopupKeysKeyboard(@NonNull final Key key,
                                                 @NonNull final PointerTracker tracker) {
+        android.util.Log.d(TAG, "showPopupKeysKeyboard called for key: " + key.getLabel());
         final PopupKeySpec[] popupKeys = key.getPopupKeys();
         if (popupKeys == null) {
+            android.util.Log.d(TAG, "popupKeys is null for key: " + key.getLabel());
             return null;
+        }
+        android.util.Log.d(TAG, "popupKeys length for key " + key.getLabel() + ": " + popupKeys.length);
+        for (PopupKeySpec spec : popupKeys) {
+            android.util.Log.d(TAG, "  PopupKeySpec: label=" + spec.mLabel + ", code=" + spec.mCode + ", outputText=" + spec.mOutputText);
         }
         Keyboard popupKeysKeyboard = mPopupKeysKeyboardCache.get(key);
         if (popupKeysKeyboard == null) {

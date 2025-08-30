@@ -63,20 +63,22 @@ fun WelcomeWizard(
     val imm = ctx.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     fun determineStep(): Int = when {
         !UncachedInputMethodManagerUtils.isThisImeEnabled(ctx, imm) -> 0
-        !UncachedInputMethodManagerUtils.isThisImeCurrent(ctx, imm) -> 2
+        // The IME is enabled, but not set as current. We skip directly to step 3, because we no longer have a specific "switch to this IME" step.
+        // The user will configure the keyboard in step 3.
         else -> 3
     }
     var step by rememberSaveable { mutableIntStateOf(determineStep()) }
     val scope = rememberCoroutineScope()
-    LaunchedEffect(step) {
-        if (step == 2)
-            scope.launch {
-                while (step == 2 && !UncachedInputMethodManagerUtils.isThisImeCurrent(ctx, imm)) {
-                    delay(50)
-                }
-                step = 3
-            }
-    }
+    // No longer need to launch a coroutine to check for step 2, as it's been removed.
+    // LaunchedEffect(step) {
+    //     if (step == 2)
+    //         scope.launch {
+    //             while (step == 2 && !UncachedInputMethodManagerUtils.isThisImeCurrent(ctx, imm)) {
+    //                 delay(50)
+    //             }
+    //             step = 3
+    //         }
+    // }
     val useWideLayout = height < 500 && width > height
     val stepBackgroundColor = Color(ContextCompat.getColor(ctx, R.color.setup_step_background))
     val textColor = Color(ContextCompat.getColor(ctx, R.color.setup_text_action))
@@ -138,12 +140,6 @@ fun WelcomeWizard(
                         intent.addCategory(Intent.CATEGORY_DEFAULT)
                         launcher.launch(intent)
                     }
-                } else if (step == 2) {
-                    title = stringResource(R.string.setup_step2_title, appName)
-                    instruction = stringResource(R.string.setup_step2_instruction, appName)
-                    icon = painterResource(R.drawable.ic_setup_select)
-                    actionText = stringResource(R.string.setup_step2_action)
-                    action = imm::showInputMethodPicker
                 } else { // step 3
                     title = stringResource(R.string.setup_step3_title)
                     instruction = stringResource(R.string.setup_step3_instruction, appName)

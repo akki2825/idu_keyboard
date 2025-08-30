@@ -100,12 +100,12 @@ object SubtypeUtilsAdditional {
         }
 
     private fun getNameResId(locale: Locale, mainLayoutName: String): Int {
-        val nameId = SubtypeLocaleUtils.getSubtypeNameResId(locale, mainLayoutName)
-        if (nameId != SubtypeLocaleUtils.UNKNOWN_KEYBOARD_LAYOUT) return nameId
+        // val nameId = SubtypeLocaleUtils.getSubtypeNameResId(locale, mainLayoutName) // Removed as SubtypeLocaleUtils is deleted
+        // if (nameId != SubtypeLocaleUtils.UNKNOWN_KEYBOARD_LAYOUT) return nameId // Removed as SubtypeLocaleUtils is deleted
         SubtypeSettings.getResourceSubtypesForLocale(locale).forEach {
             if (it.mainLayoutName() == mainLayoutName) return it.nameResId
         }
-        return SubtypeLocaleUtils.UNKNOWN_KEYBOARD_LAYOUT
+        return R.string.idu_mishmi_ime_name // Default to idu_mishmi_ime_name
     }
 
     /**
@@ -150,15 +150,15 @@ object SubtypeUtilsAdditional {
         val extraValueItems = mutableListOf<String>()
         if (isAsciiCapable)
             extraValueItems.add(ExtraValue.ASCII_CAPABLE)
-        if (SubtypeLocaleUtils.isExceptionalLocale(locale)) {
+        // if (SubtypeLocaleUtils.isExceptionalLocale(locale)) { // Removed as SubtypeLocaleUtils is deleted
             // this seems to be for shorter names (e.g. English (US) instead English (United States))
             // but is now also used for languages that are not known by Android (at least older versions)
             // todo: actually this should never contain a custom layout name, because it may contain any
             //  characters including , and = which may break extra values
-            extraValueItems.add(
-                ExtraValue.UNTRANSLATABLE_STRING_IN_SUBTYPE_NAME + "=" + SubtypeLocaleUtils.getMainLayoutDisplayName(mainLayoutName)
-            )
-        }
+        //    extraValueItems.add(
+        //        ExtraValue.UNTRANSLATABLE_STRING_IN_SUBTYPE_NAME + "=" + SubtypeLocaleUtils.getMainLayoutDisplayName(mainLayoutName)
+        //    )
+        // }
         if (isEmojiCapable)
             extraValueItems.add(ExtraValue.EMOJI_CAPABLE)
         extraValueItems.add(ExtraValue.IS_ADDITIONAL_SUBTYPE)

@@ -214,7 +214,7 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
             // We have a high score, so we need to check if this suggestion is in the correct
             // form to allow auto-correcting to it in this language. For details of how this
             // is determined, see #isAllowedByAutoCorrectionWithSpaceFilter.
-            val allowed = isAllowedByAutoCorrectionWithSpaceFilter(firstSuggestion)
+            val allowed = true // isAllowedByAutoCorrectionWithSpaceFilter(firstSuggestion)
             if (allowed && typedWordInfo != null && typedWordInfo.mScore > scoreLimit) {
                 // typed word is valid and has good score
                 // do not auto-correct if typed word is better match than first suggestion
@@ -267,17 +267,7 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
         val suggestionsCount = suggestionsContainer.size
         val isFirstCharCapitalized = wordComposer.wasShiftedNoLock()
         val isAllUpperCase = wordComposer.isAllUpperCase
-        if (isFirstCharCapitalized || isAllUpperCase) {
-            for (i in 0 until suggestionsCount) {
-                val wordInfo = suggestionsContainer[i]
-                val wordLocale = wordInfo!!.mSourceDict.mLocale
-                val transformedWordInfo = getTransformedSuggestedWordInfo(
-                    wordInfo, wordLocale ?: locale, isAllUpperCase,
-                    isFirstCharCapitalized, 0
-                )
-                suggestionsContainer[i] = transformedWordInfo
-            }
-        }
+        // Removed if (isFirstCharCapitalized || isAllUpperCase) block as getTransformedSuggestedWordInfo is removed.
         val rejected: SuggestedWordInfo?
         if (SHOULD_REMOVE_PREVIOUSLY_REJECTED_SUGGESTION && suggestionsContainer.size > 1 && TextUtils.equals(
                 suggestionsContainer[0]!!.mWord,
@@ -389,29 +379,17 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
         // Close to -2**31
         private const val SUPPRESS_SUGGEST_THRESHOLD = -2000000000
 
-        private const val MAXIMUM_AUTO_CORRECT_LENGTH_FOR_GERMAN = 12
-        // TODO: should we add Finnish here?
-        private val sLanguageToMaximumAutoCorrectionWithSpaceLength = hashMapOf(Locale.GERMAN.language to MAXIMUM_AUTO_CORRECT_LENGTH_FOR_GERMAN)
-
         private fun getTransformedSuggestedWordInfoList(
             wordComposer: WordComposer, results: SuggestionResults,
             trailingSingleQuotesCount: Int, defaultLocale: Locale
         ): ArrayList<SuggestedWordInfo> {
-            val shouldMakeSuggestionsAllUpperCase = wordComposer.isAllUpperCase && !wordComposer.isResumed
             val isOnlyFirstCharCapitalized = wordComposer.isOrWillBeOnlyFirstCharCapitalized
             val suggestionsContainer = ArrayList(results)
-            val suggestionsCount = suggestionsContainer.size
-            if (isOnlyFirstCharCapitalized || shouldMakeSuggestionsAllUpperCase || 0 != trailingSingleQuotesCount) {
-                for (i in 0 until suggestionsCount) {
-                    val wordInfo = suggestionsContainer[i]
-                    val wordLocale = wordInfo.mSourceDict.mLocale
-                    val transformedWordInfo = getTransformedSuggestedWordInfo(
-                        wordInfo, wordLocale ?: defaultLocale,
-                        shouldMakeSuggestionsAllUpperCase, isOnlyFirstCharCapitalized,
-                        trailingSingleQuotesCount
-                    )
-                    suggestionsContainer[i] = transformedWordInfo
-                }
+            val suggestionsCount = suggestionsContainer.size // Re-added this line
+            // Removed conditional capitalization logic and flags as they are not needed for Idu Mishmi only.
+            for (i in 0 until suggestionsCount) {
+                val wordInfo = suggestionsContainer[i]
+                suggestionsContainer[i] = wordInfo // Directly re-assign original wordInfo as no capitalization is applied here.
             }
             return suggestionsContainer
         }
@@ -438,62 +416,6 @@ class Suggest(private val mDictionaryFacilitator: DictionaryFacilitator) {
                 String.format(Locale.ROOT, "%d, %s", wordInfo.mScore, dict)
             }
             wordInfo.debugString = scoreInfoString
-        }
-
-        /**
-         * Computes whether this suggestion should be blocked or not in this language
-         *
-         * This function implements a filter that avoids auto-correcting to suggestions that contain
-         * spaces that are above a certain language-dependent character limit. In languages like German
-         * where it's possible to concatenate many words, it often happens our dictionary does not
-         * have the longer words. In this case, we offer a lot of unhelpful suggestions that contain
-         * one or several spaces. Ideally we should understand what the user wants and display useful
-         * suggestions by improving the dictionary and possibly having some specific logic. Until
-         * that's possible we should avoid displaying unhelpful suggestions. But it's hard to tell
-         * whether a suggestion is useful or not. So at least for the time being we block
-         * auto-correction when the suggestion is long and contains a space, which should avoid the
-         * worst damage.
-         * This function is implementing that filter. If the language enforces no such limit, then it
-         * always returns true. If the suggestion contains no space, it also returns true. Otherwise,
-         * it checks the length against the language-specific limit.
-         *
-         * @param info the suggestion info
-         * @return whether it's fine to auto-correct to this.
-         */
-        private fun isAllowedByAutoCorrectionWithSpaceFilter(info: SuggestedWordInfo): Boolean {
-            val locale = info.mSourceDict.mLocale ?: return true
-            val maximumLengthForThisLanguage = sLanguageToMaximumAutoCorrectionWithSpaceLength[locale.language]
-                ?: return true // This language does not enforce a maximum length to auto-correction
-            return (info.mWord.length <= maximumLengthForThisLanguage
-                    || -1 == info.mWord.indexOf(Constants.CODE_SPACE.toChar()))
-        }
-
-        private fun getTransformedSuggestedWordInfo(
-            wordInfo: SuggestedWordInfo?, locale: Locale?, isAllUpperCase: Boolean,
-            isOnlyFirstCharCapitalized: Boolean, trailingSingleQuotesCount: Int
-        ): SuggestedWordInfo {
-            val sb = StringBuilder(wordInfo!!.mWord.length)
-            if (isAllUpperCase) {
-                sb.append(wordInfo.mWord.uppercase(locale!!))
-            } else if (isOnlyFirstCharCapitalized) {
-                sb.append(StringUtils.capitalizeFirstCodePoint(wordInfo.mWord, locale!!))
-            } else {
-                sb.append(wordInfo.mWord)
-            }
-            // Appending quotes is here to help people quote words. However, it's not helpful
-            // when they type words with quotes toward the end like "it's" or "didn't", where
-            // it's more likely the user missed the last character (or didn't type it yet).
-            val quotesToAppend = (trailingSingleQuotesCount
-                    - if (-1 == wordInfo.mWord.indexOf(Constants.CODE_SINGLE_QUOTE.toChar())) 0 else 1)
-            for (i in quotesToAppend - 1 downTo 0) {
-                sb.appendCodePoint(Constants.CODE_SINGLE_QUOTE)
-            }
-            return SuggestedWordInfo(
-                sb.toString(), wordInfo.mPrevWordsContext,
-                wordInfo.mScore, wordInfo.mKindAndFlags,
-                wordInfo.mSourceDict, wordInfo.mIndexOfTouchPointOfSecondWord,
-                wordInfo.mAutoCommitFirstWordConfidence
-            )
         }
     }
 }
