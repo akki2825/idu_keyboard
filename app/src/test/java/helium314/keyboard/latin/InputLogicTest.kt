@@ -137,7 +137,7 @@ class InputLogicTest {
     }
 
     // todo: make it work, but it might not be that simple because adding is done in combiner
-    //  https://github.com/Helium314/HeliBoard/issues/214
+    //  https://github.com/akki2825/idu_keyboard/issues/214
     @Test fun insertLetterIntoWordHangul() {
         if (BuildConfig.BUILD_TYPE == "runTests") return
         reset()
@@ -480,8 +480,8 @@ class InputLogicTest {
         assertEquals("b", composingText)
     }
 
-    // https://github.com/Helium314/HeliBoard/issues/215
-    // https://github.com/Helium314/HeliBoard/issues/229
+    // https://github.com/akki2825/idu_keyboard/issues/215
+    // https://github.com/akki2825/idu_keyboard/issues/229
     @Test fun `autospace works in URL field when input isn't URL, also for multiple suggestions`() {
         reset()
         latinIME.prefs().edit { putBoolean(Settings.PREF_URL_DETECTION, true) }
@@ -527,7 +527,7 @@ class InputLogicTest {
         assertEquals("hi ${StringUtils.newSingleCodePointString(0x1F36D)}", text)
     }
 
-    // https://github.com/Helium314/HeliBoard/issues/230
+    // https://github.com/akki2825/idu_keyboard/issues/230
     @Test fun `no autospace after opening quotes`() {
         reset()
         chainInput("\"Hi\" \"h")

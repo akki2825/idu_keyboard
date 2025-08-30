@@ -1,6 +1,0 @@
-[popup_keys]
-a !fixedColumnOrder!5 ã
-e !fixedColumnOrder!5 ẽ ə ə̃ ɚ ɚ̃
-i !fixedColumnOrder!5 ĩ
-o !fixedColumnOrder!5 õ
-u !fixedColumnOrder!5 ũ
