@@ -32,6 +32,6 @@
         <item>PC</item>
     </string-array>
     <!-- App slogan-->
-    <string name="app_slogan" translatable="false">100% FOSS keyboard, based on AOSP.</string>
+    <string name="app_slogan" translatable="false">Official keyboard for Idu Mishmi</string>
 
 </resources>

@@ -1,5 +1,5 @@
-HeliBoard is a privacy-conscious open-source keyboard, based on AOSP / OpenBoard.
-Does not use internet permission, and thus is 100% offline.
+Official keyboard for the Idu Mishmi language. Based on HeliBoard, a privacy-conscious open-source keyboard derived from AOSP / OpenBoard.
+Features full support for Idu Mishmi with custom accent markers and diacritics. Does not use internet permission, and thus is 100% offline.
 
 Features:
 <ul>

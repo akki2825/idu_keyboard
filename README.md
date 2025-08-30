@@ -1,10 +1,9 @@
-# HeliBoard
-HeliBoard is a privacy-conscious and customizable open-source keyboard, based on AOSP / OpenBoard.
-Does not use internet permission, and thus is 100% offline.
+# Idu Mishmi Keyboard
+The official keyboard for the Idu Mishmi language. This is a fork of [HeliBoard](https://github.com/Helium314/HeliBoard), a privacy-conscious and customizable open-source keyboard based on AOSP / OpenBoard. 
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/helium314.keyboard/)
+Features full support for Idu Mishmi with custom accent markers and diacritics. Does not use internet permission, and thus is 100% offline.
+
 [<img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Get APK from GitHub" height="80">](https://github.com/akki2825/idu_keyboard/releases/latest)
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="80">](https://apt.izzysoft.de/fdroid/index/apk/helium314.keyboard)
 
 ## Table of Contents
 
@@ -18,6 +17,16 @@ Does not use internet permission, and thus is 100% offline.
 - [Credits](#credits)
 
 # Features
+
+## Idu Mishmi Language Support
+<ul>
+  <li>🎯 <strong>Official Idu Mishmi keyboard layout</strong> with native character support</li>
+  <li>📝 <strong>Custom accent markers and diacritics</strong> for authentic Idu Mishmi writing</li>
+  <li>⌨️ <strong>Long-press popup keys</strong> for easy access to special characters like ə, ə̃, ɚ, ɚ̃</li>
+  <li>🔤 <strong>English QWERTY support</strong> with accent markers for bilingual typing</li>
+</ul>
+
+## General Keyboard Features
 <ul>
   <li>Add dictionaries for suggestions and spell check</li>
   <ul>
@@ -51,11 +60,11 @@ For [FAQ](https://github.com/akki2825/idu_keyboard/wiki/FAQ) and more informatio
 
 ## Reporting Issues
 
-Whether you encountered a bug, or want to see a new feature in HeliBoard, you can contribute to the project by opening a new issue [here](https://github.com/akki2825/idu_keyboard/issues). Your help is always welcome!
+Whether you encountered a bug, or want to see a new feature in the Idu Mishmi Keyboard, you can contribute to the project by opening a new issue [here](https://github.com/akki2825/idu_keyboard/issues). Your help is always welcome!
 
 Before opening a new issue, be sure to check the following:
  - **Does the issue already exist?** Make sure a similar issue has not been reported by browsing [existing issues](https://github.com/akki2825/idu_keyboard/issues?q=). Please search open and closed issues.
- - **Is the issue still relevant?** Make sure your issue is not already fixed in the latest version of HeliBoard.
+ - **Is the issue still relevant?** Make sure your issue is not already fixed in the latest version of the Idu Mishmi Keyboard.
  - **Is it a single topic?** If you want to suggest multiple things, open multiple issues.
  - **Did you use the issue template?** It is important to make life of our kind contributors easier by avoiding issues that miss key information to their resolution.
 Note that issues that that ignore part of the issue template will likely get treated with very low priority, as often they are needlessly hard to read or understand (e.g. huge screenshots, not providing a proper description, or addressing multiple topics). Blatant violation of the guidelines may result in the issue getting closed.
@@ -87,18 +96,35 @@ You can share your themes, layouts and dictionaries with other people:
 ## Code Contribution
 See [Contribution Guidelines](CONTRIBUTING.md)
 
+# About This Fork
+
+This Idu Mishmi Keyboard is based on [HeliBoard](https://github.com/Helium314/HeliBoard), which is itself based on [OpenBoard](https://github.com/openboard-team/openboard) and AOSP Keyboard. We extend our gratitude to the HeliBoard project and its contributors for providing an excellent foundation for this specialized Idu Mishmi keyboard implementation.
+
+**Key differences from HeliBoard:**
+- Official support for Idu Mishmi language and script
+- Custom accent markers and diacritics specific to Idu Mishmi
+- Optimized layout and popup keys for Idu Mishmi typing
+- Bilingual English-Idu Mishmi support
+
 # License
 
-HeliBoard (as a fork of OpenBoard) is licensed under GNU General Public License v3.0.
+The Idu Mishmi Keyboard (as a fork of HeliBoard/OpenBoard) is licensed under GNU General Public License v3.0.
 
  > Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
 
-See repo's [LICENSE](/LICENSE) file.
+See repo's [LICENSE](/LICENSE) file. For detailed copyright information, see the [COPYRIGHT](/COPYRIGHT) file.
 
 Since the app is based on Apache 2.0 licensed AOSP Keyboard, an [Apache 2.0](LICENSE-Apache-2.0) license file is provided.
 The icon is licensed under [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). A [license file](LICENSE-CC-BY-SA-4.0) is also included.
 
 # Credits
+
+## Idu Mishmi Keyboard Development
+- Idu Mishmi language implementation and keyboard customization
+- Our [contributors](https://github.com/akki2825/idu_keyboard/graphs/contributors)
+
+## Based on HeliBoard and Open Source Projects
+- [HeliBoard](https://github.com/Helium314/HeliBoard) - The excellent keyboard base this fork is built upon
 - Icon by [Fabian OvrWrt](https://github.com/FabianOvrWrt) with contributions from [The Eclectic Dyslexic](https://github.com/the-eclectic-dyslexic)
 - [OpenBoard](https://github.com/openboard-team/openboard)
 - [AOSP Keyboard](https://android.googlesource.com/platform/packages/inputmethods/LatinIME/)
@@ -106,4 +132,3 @@ The icon is licensed under [Creative Commons BY-SA 4.0](https://creativecommons.
 - [Simple Keyboard](https://github.com/rkkr/simple-keyboard)
 - [Indic Keyboard](https://gitlab.com/indicproject/indic-keyboard)
 - [FlorisBoard](https://github.com/florisboard/florisboard/)
-- Our [contributors](https://github.com/akki2825/idu_keyboard/graphs/contributors)

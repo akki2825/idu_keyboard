@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2011 The Android Open Source Project
- * modified
+ * Copyright (C) 2024 Idu Mishmi Keyboard Contributors
+ * modified for Idu Mishmi language support
  * SPDX-License-Identifier: Apache-2.0 AND GPL-3.0-only
  */
 
