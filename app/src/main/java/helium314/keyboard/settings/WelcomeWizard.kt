@@ -1,5 +1,5 @@
-// Copyright (C) 2024 Idu Mishmi Keyboard Contributors
-// modified for Idu Mishmi keyboard setup
+// Copyright (C) 2025 Idu Mishmi Cultural and Literary Society
+// modified for Idu Mishmi Language keyboard setup
 // SPDX-License-Identifier: GPL-3.0-only
 package helium314.keyboard.settings
 

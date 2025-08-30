@@ -1,4 +1,4 @@
-# Idu Mishmi Keyboard
+# Idu Mishmi Language Keyboard
 The official keyboard for the Idu Mishmi language. This is a fork of [HeliBoard](https://github.com/Helium314/HeliBoard), a privacy-conscious and customizable open-source keyboard based on AOSP / OpenBoard. 
 
 Features full support for Idu Mishmi with custom accent markers and diacritics. Does not use internet permission, and thus is 100% offline.
@@ -8,11 +8,7 @@ Features full support for Idu Mishmi with custom accent markers and diacritics. 
 ## Table of Contents
 
 - [Features](#features)
-- [Contributing](#contributing-)
-   * [Reporting Issues](#reporting-issues)
-   * [Translations](#translations)
-   * [To Community Creation](#to-community)
-   * [Code Contribution](CONTRIBUTING.md)
+- [About This Fork](#about-this-fork)
 - [License](#license)
 - [Credits](#credits)
 
@@ -20,85 +16,15 @@ Features full support for Idu Mishmi with custom accent markers and diacritics. 
 
 ## Idu Mishmi Language Support
 <ul>
-  <li>🎯 <strong>Official Idu Mishmi keyboard layout</strong> with native character support</li>
+  <li>🎯 <strong>Official Idu Mishmi Language keyboard layout</strong> with native character support</li>
   <li>📝 <strong>Custom accent markers and diacritics</strong> for authentic Idu Mishmi writing</li>
   <li>⌨️ <strong>Long-press popup keys</strong> for easy access to special characters like ə, ə̃, ɚ, ɚ̃</li>
   <li>🔤 <strong>English QWERTY support</strong> with accent markers for bilingual typing</li>
 </ul>
 
-## General Keyboard Features
-<ul>
-  <li>Add dictionaries for suggestions and spell check</li>
-  <ul>
-    <li>build your own, or get them  <a href="https://codeberg.org/Helium314/aosp-dictionaries#dictionaries">here</a>, or in the <a href="https://codeberg.org/Helium314/aosp-dictionaries#experimental-dictionaries">experimental</a> section (quality may vary)</li>
-    <li>additional dictionaries for emojis or scientific symbols can be used to provide suggestions (similar to "emoji search")</li>
-    <li>note that for Korean layouts, suggestions only work using <a href="https://github.com/openboard-team/openboard/commit/83fca9533c03b9fecc009fc632577226bbd6301f">this dictionary</a>, the tools in the dictionary repository are not able to create working dictionaries</li>
-  </ul>
-  <li>Customize keyboard themes (style, colors and background image)</li>
-  <ul>
-    <li>can follow the system's day/night setting on Android 10+ (and on some versions of Android 9)</li>
-    <li>can follow dynamic colors for Android 12+</li>
-  </ul>
-  <li>Customize keyboard <a href="https://github.com/akki2825/idu_keyboard/blob/main/layouts.md">layouts</a> (only available when disabling <i>use system languages</i>)</li>
-  <li>Customize special layouts, like symbols, number,  or functional key layout</li>
-  <li>Multilingual typing</li>
-  <li>Glide typing (<i>only with closed source library</i> ☹️)</li>
-  <ul>
-    <li>library not included in the app, as there is no compatible open source library available</li>
-    <li>can be extracted from GApps packages ("<i>swypelibs</i>"), or downloaded <a href="https://github.com/erkserkserks/openboard/tree/46fdf2b550035ca69299ce312fa158e7ade36967/app/src/main/jniLibs">here</a> (click on the file and then "raw" or the tiny download button)</li>
-  </ul>
-  <li>Clipboard history</li>
-  <li>One-handed mode</li>
-  <li>Split keyboard</li>
-  <li>Number pad</li>
-  <li>Backup and restore your settings and learned word / history data</li>
-</ul>
-
-For [FAQ](https://github.com/akki2825/idu_keyboard/wiki/FAQ) and more information about the app and features, please visit the [wiki](https://github.com/akki2825/idu_keyboard/wiki)
-
-# Contributing ❤
-
-## Reporting Issues
-
-Whether you encountered a bug, or want to see a new feature in the Idu Mishmi Keyboard, you can contribute to the project by opening a new issue [here](https://github.com/akki2825/idu_keyboard/issues). Your help is always welcome!
-
-Before opening a new issue, be sure to check the following:
- - **Does the issue already exist?** Make sure a similar issue has not been reported by browsing [existing issues](https://github.com/akki2825/idu_keyboard/issues?q=). Please search open and closed issues.
- - **Is the issue still relevant?** Make sure your issue is not already fixed in the latest version of the Idu Mishmi Keyboard.
- - **Is it a single topic?** If you want to suggest multiple things, open multiple issues.
- - **Did you use the issue template?** It is important to make life of our kind contributors easier by avoiding issues that miss key information to their resolution.
-Note that issues that that ignore part of the issue template will likely get treated with very low priority, as often they are needlessly hard to read or understand (e.g. huge screenshots, not providing a proper description, or addressing multiple topics). Blatant violation of the guidelines may result in the issue getting closed.
-
-If you're interested, you can read the following useful text about effective bug reporting (a bit longer read): https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
-
-## Translations
-Translations can be added using [Weblate](https://translate.codeberg.org/projects/heliboard/). You will need an account to update translations and add languages. Add the language you want to translate to in Languages -> Manage translated languages in the top menu bar.
-Updating translations in a PR will not be accepted, as it may cause conflicts with Weblate translations.
-
-Some notes on translations
-* when translating metadata, translating the changelogs is rather useless. It's available as it was requested by translators.
-* the `hidden_features_message` is horrible to translate with Weblate, and serves little benefit as it's just a copy of what's already in the wiki: https://github.com/akki2825/idu_keyboard/wiki/Hidden-functionality. It's been made available in the app on user request/contribution.
-
-## To Community
-You can share your themes, layouts and dictionaries with other people:
-* Themes can be saved and loaded using the menu on top-right in the _adjust colors_ screen
-  * You can share custom colors in a separate [discussion section](https://github.com/akki2825/idu_keyboard/discussions/categories/custom-colors)
-* Custom keyboard layouts are text files whose content you can edit, copy and share
-  * this applies to main keyboard layouts and to special layouts adjustable in advanced settings
-  * see [layouts.md](layouts.md) for details
-  * You can share custom layouts in a separate [discussion section](https://github.com/akki2825/idu_keyboard/discussions/categories/custom-layout)
-* Creating dictionaries is a little more work
-  * first you will need a wordlist, as described [here](https://codeberg.org/Helium314/aosp-dictionaries/src/branch/main/wordlists/sample.combined) and in the repository readme
-  * the you need to compile the dictionary using [external tools](https://github.com/remi0s/aosp-dictionary-tools)
-  * the resulting file (and ideally the wordlist too) can be shared with other users
-  * note that there will not be any further dictionaries added to this app, but you can add dictionaries to the [dictionaries repository](https://codeberg.org/Helium314/aosp-dictionaries)
-
-## Code Contribution
-See [Contribution Guidelines](CONTRIBUTING.md)
-
 # About This Fork
 
-This Idu Mishmi Keyboard is based on [HeliBoard](https://github.com/Helium314/HeliBoard), which is itself based on [OpenBoard](https://github.com/openboard-team/openboard) and AOSP Keyboard. We extend our gratitude to the HeliBoard project and its contributors for providing an excellent foundation for this specialized Idu Mishmi keyboard implementation.
+This Idu Mishmi Language Keyboard is based on [HeliBoard](https://github.com/Helium314/HeliBoard), which is itself based on [OpenBoard](https://github.com/openboard-team/openboard) and AOSP Keyboard. We extend our gratitude to the HeliBoard project and its contributors for providing an excellent foundation for this specialized Idu Mishmi Language keyboard implementation.
 
 **Key differences from HeliBoard:**
 - Official support for Idu Mishmi language and script
@@ -108,7 +34,7 @@ This Idu Mishmi Keyboard is based on [HeliBoard](https://github.com/Helium314/He
 
 # License
 
-The Idu Mishmi Keyboard (as a fork of HeliBoard/OpenBoard) is licensed under GNU General Public License v3.0.
+The Idu Mishmi Language Keyboard (as a fork of HeliBoard/OpenBoard) is licensed under GNU General Public License v3.0.
 
  > Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
 
@@ -119,7 +45,7 @@ The icon is licensed under [Creative Commons BY-SA 4.0](https://creativecommons.
 
 # Credits
 
-## Idu Mishmi Keyboard Development
+## Idu Mishmi Language Keyboard Development
 - Idu Mishmi language implementation and keyboard customization
 - Our [contributors](https://github.com/akki2825/idu_keyboard/graphs/contributors)
 
