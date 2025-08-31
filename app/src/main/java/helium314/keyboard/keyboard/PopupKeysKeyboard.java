@@ -255,7 +255,7 @@ public final class PopupKeysKeyboard extends Keyboard {
         private static final Map<String, String[]> IM_POPUP_KEYS = Map.of(
             "a", new String[]{"à", "á", "â", "ä", "æ", "ã", "å", "ā", "ą", "ă", "ȁ", "ȃ"},
             "A", new String[]{"À", "Á", "Â", "Ä", "Æ", "Ã", "Å", "Ā", "Ą", "Ă", "Ȁ", "Ȃ"},
-            "e", new String[]{"è", "é", "ê", "ë", "ē", "ė", "ę", "ẽ", "ə", "ə̃", "ɚ", "ɚ̃"},
+            "e", new String[]{"è", "é", "ê", "ë", "ē", "ė", "ę", "ẽ", "ə", "ə̃", "ə˞", "ə̃˞"},
             "E", new String[]{"È", "É", "Ê", "Ë", "Ē", "Ė", "Ę", "Ẽ", "Ə", "Ə̃", "Ə˞", "Ə̃˞"},
             "i", new String[]{"ì", "í", "î", "ï", "ī", "į", "ĩ"},
             "I", new String[]{"Ì", "Í", "Î", "Ï", "Ī", "Į", "Ĩ"},
