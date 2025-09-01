@@ -9,12 +9,21 @@ android {
     compileSdk = 35
     buildToolsVersion = "34.0.0"
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("../idu_keyboard.keystore")
+            storePassword = "idu_keyboard_pass"
+            keyAlias = "idu_keyboard"
+            keyPassword = "idu_keyboard_pass"
+        }
+    }
+
     defaultConfig {
-        applicationId = "helium314.keyboard"
+        applicationId = "org.idumishmi.keyboard"
         minSdk = 21
         targetSdk = 35
-        versionCode = 10000
-        versionName = "1.0.0"
+        versionCode = 10001
+        versionName = "1.0"
         ndk {
             abiFilters.clear()
             abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -28,6 +37,7 @@ android {
             isShrinkResources = false
             isDebuggable = false
             isJniDebuggable = false
+            signingConfig = signingConfigs.getByName("release")
         }
         create("nouserlib") { // same as release, but does not allow the user to provide a library
             isMinifyEnabled = true
@@ -53,7 +63,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             applicationIdSuffix = ".debug"
         }
-        base.archivesBaseName = "HeliBoard_" + defaultConfig.versionName
+        base.archivesBaseName = "idumishmi_" + defaultConfig.versionName
     }
 
     buildFeatures {
@@ -97,7 +107,7 @@ android {
         includeInBundle = false
     }
 
-    namespace = "helium314.keyboard.latin"
+    namespace = "org.idumishmi.keyboard.latin"
     lint {
         abortOnError = true
     }

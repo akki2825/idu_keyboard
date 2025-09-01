@@ -1,11 +1,37 @@
 Official keyboard for the Idu Mishmi language. Based on HeliBoard, a privacy-conscious open-source keyboard derived from AOSP / OpenBoard.
 Features full support for Idu Mishmi with custom accent markers and diacritics. Does not use internet permission, and thus is 100% offline.
 
+🌟 **Idu Mishmi Language Support:**
+• Complete support for Idu Mishmi characters and diacritics
+• Special long-press popup keys for vowels with Idu Mishmi accent markers
+• Includes characters: ə, ə̃, ə˞, ə̃˞, Ə, Ə̃, Ə˞, Ə̃˞ and more
+• Optimized for Idu Mishmi language typing experience
+
+📱 **Long Press Guide - Quick Access to Special Characters:**
+
+**Vowels with Idu Mishmi Characters:**
+• **Long press 'e'** → è, é, ê, ë, ē, ẽ, ə, ə̃, ə̀, ə́, ə̄, ə˞, ə̃˞, ə̀˞, ə́˞, ə̄˞
+• **Long press 'E'** → È, É, Ê, Ë, Ē, Ẽ, Ə, Ə̃, Ə̀, Ə́, Ə̄, Ə˞, Ə̃˞, Ə̀˞, Ə́˞, Ə̄˞
+• **Long press 'a'** → à, á, â, ä, ã, ā (2-column layout)
+• **Long press 'A'** → À, Á, Â, Ä, Ã, Ā (2-column layout)
+• **Long press 'i'** → ì, í, î, ï, ī, ĩ
+• **Long press 'I'** → Ì, Í, Î, Ï, Ī, Ĩ
+• **Long press 'o'** → ò, ó, ö, ō, õ
+• **Long press 'O'** → Ò, Ó, Ö, Ō, Õ
+• **Long press 'u'** → ù, ú, ü, ū, ũ
+• **Long press 'U'** → Ù, Ú, Ü, Ū, Ũ
+
+**Special Features:**
+• **Two-column layout** for 'a' and 'A' keys for better organization
+• **Idu Mishmi specific characters** (ə, Ə with various diacritics)
+• **Standard English accents** alongside Idu Mishmi characters
+• **Easy access** to all special characters without switching layouts
+
 Features:
 <ul>
   <li>Add dictionaries for suggestions and spell check</li>
   <ul>
-    <li>build your own, or get them  <a href="https://codeberg.org/Helium314/aosp-dictionaries#dictionaries">here</a>, or in the <a href="https://codeberg.org/Helium314/aosp-dictionaries#experimental-dictionaries">experimental</a> section (quality may vary)</li>
+    <li>build your own, or get them  <a href="https://codeberg.org/Helium314/aosp-dictionaries#dictionaries">here</a>, or in the <a href="https://codeberg.org/Helium314/aosp-dictionaries#experimental">experimental</a> section (quality may vary)</li>
     <li>additional dictionaries for emojis or scientific symbols can be used to provide suggestions (similar to "emoji search")</li>
     <li>note that for Korean layouts, suggestions only work using <a href="https://github.com/openboard-team/openboard/commit/83fca9533c03b9fecc009fc632577226bbd6301f">this dictionary</a>, the tools in the dictionary repository are not able to create working dictionaries</li>
   </ul>
@@ -28,3 +54,11 @@ Features:
   <li>Number pad</li>
   <li>Backup and restore your settings and learned word / history data</li>
 </ul>
+
+🔒 **Privacy First:**
+• No internet permissions required
+• 100% offline functionality
+• No data collection or tracking
+• Your typing stays private
+
+Perfect for Idu Mishmi language speakers, linguists, and anyone who needs access to special phonetic characters and diacritics!
