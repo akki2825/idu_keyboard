@@ -5,7 +5,7 @@
 
 ## Introduction
 
-The Idu Mishmi Language Keyboard ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our keyboard application.
+This Privacy Policy explains how we collect, use, and safeguard your information when you use our keyboard application.
 
 ## About Our App
 
@@ -53,14 +53,6 @@ The Idu Mishmi Language Keyboard is a privacy-focused, offline keyboard applicat
 - Cloud storage services
 - Any external data processors
 
-## Children's Privacy
-
-Our app is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.
-
-## Changes to This Privacy Policy
-
-We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Effective Date" at the top.
-
 ## Your Rights
 
 Since we don't collect personal data, you have the right to:
@@ -73,19 +65,7 @@ Since we don't collect personal data, you have the right to:
 If you have any questions about this Privacy Policy or our privacy practices, please contact us:
 
 **Organization:** Idu Mishmi Cultural and Literary Society  
-**Email:** [Your contact email]  
-**Address:** [Your organization address]
-
-## Legal Basis
-
-This Privacy Policy is provided in compliance with:
-- General Data Protection Regulation (GDPR)
-- California Consumer Privacy Act (CCPA)
-- Other applicable privacy laws and regulations
-
-## Conclusion
-
-The Idu Mishmi Language Keyboard is designed with privacy as a core principle. We believe that a keyboard should respect your privacy and not compromise your personal information. By choosing our app, you're choosing a keyboard that puts your privacy first.
+**Email:** imclsroing@gmail.com  
 
 ---
 
