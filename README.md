@@ -18,7 +18,7 @@ Features full support for Idu Mishmi with custom accent markers and diacritics. 
 <ul>
   <li>🎯 <strong>Official Idu Mishmi Language keyboard layout</strong> with native character support</li>
   <li>📝 <strong>Custom accent markers and diacritics</strong> for authentic Idu Mishmi writing</li>
-      <li>⌨️ <strong>Long-press popup keys</strong> for easy access to special characters like ə, ə̃, ə˞, ə̃˞</li>
+      <li>⌨️ <strong>Long-press popup keys</strong> for easy access to special characters like ə, ə̃, ə̱, ə̱̃</li>
   <li>🔤 <strong>English QWERTY support</strong> with accent markers for bilingual typing</li>
 </ul>
 
